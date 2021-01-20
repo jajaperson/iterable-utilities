@@ -6,9 +6,9 @@ array methods.
 ## Usage
 
 ```ts
-import * as iter from "https://deno.land/x/iter";
+import * as iter from "https://deno.land/x/iter/mod.ts";
 // or
-import * as iter from "https://deno.land/x/iter@v0.1.0";
+import * as iter from "https://deno.land/x/iter@v0.1.0/mod.ts";
 ```
 
 ## Roadmap
