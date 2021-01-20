@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Unit tests
 
+### Changed
+
+- `iter.pair()` fixed so it doesn't just give the same value.
+
 ## [0.1.0] - 2021-01-20
 
 ### Added
