@@ -30,5 +30,3 @@ export function* concat<T, U = T>(
     yield* it;
   }
 }
-
-[].concat;
