@@ -8,7 +8,7 @@ array methods.
 ```ts
 import * as iter from "https://deno.land/x/iter/mod.ts";
 // or
-import * as iter from "https://deno.land/x/iter@v0.1.0/mod.ts";
+import * as iter from "https://deno.land/x/iter@v0.1.1/mod.ts";
 ```
 
 ## Roadmap
