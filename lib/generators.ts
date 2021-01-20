@@ -6,7 +6,7 @@ import { kComb } from "./util.ts";
  * returns the next item in the iterator,
  */
 export function* from<T>(
-  f: (() => T) | ((i: number) => T)
+  f: (() => T) | ((i: number) => T),
 ): IterableIterator<T> {
   let index = 0;
   while (true) {

@@ -21,15 +21,15 @@ export function reduce<T, U>(
     accumulator: U | undefined,
     currentValue: T,
     currentIndex?: number,
-    iterable?: Iterable<T>
+    iterable?: Iterable<T>,
   ) => U,
   initialValue?: U,
   stop: (
     accumulator: U | undefined,
     currentValue: T,
     currentIndex?: number,
-    iterable?: Iterable<T>
-  ) => boolean | undefined = kComb(false)
+    iterable?: Iterable<T>,
+  ) => boolean | undefined = kComb(false),
 ): U | undefined {
   let index = 0;
   let accumulator = initialValue;

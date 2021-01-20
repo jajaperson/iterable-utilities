@@ -7,7 +7,7 @@
  */
 export function* map<T, U = T>(
   it: Iterable<T>,
-  f: (i: T) => U
+  f: (i: T) => U,
 ): IterableIterator<U> {
   for (const i of it) {
     yield f(i);
