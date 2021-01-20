@@ -5,6 +5,7 @@ array methods.
 
 ## Roadmap
 
-[ ] Deploy to [`deno.land/x/`](https://deno.land/x/)
-[ ] Implement reducers
-[ ] Implement testing
+- [x] Make a roadmap
+- [ ] Deploy to [`deno.land/x/`](https://deno.land/x/)
+- [ ] Implement reducers
+- [ ] Implement testing
