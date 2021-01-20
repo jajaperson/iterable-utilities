@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        deno: [v1.x, nightly]
+        deno: [v1.x]
     steps:
       - uses: actions/checkout@v2
       - name: Setup Deno
@@ -19,7 +19,7 @@ jobs:
         with:
           deno-version: ${{ matrix.deno }}
       - name: Check formatting
-        run: deno fmt --check
+        run: deno fmt --check **/*.ts
   test:
     runs-on: ubuntu-latest
     strategy:
