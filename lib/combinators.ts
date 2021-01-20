@@ -7,11 +7,15 @@ export function* pair<T, U>(
   it1: Iterable<T>,
   it2: Iterable<U>
 ): IterableIterator<[T, U]> {
+  const iterator1 = it1[Symbol.iterator]();
+  const iterator2 = it2[Symbol.iterator]();
   while (true) {
-    yield [
-      it1[Symbol.iterator]().next().value,
-      it2[Symbol.iterator]().next().value,
-    ];
+    const a = iterator1.next();
+    const b = iterator2.next();
+    if (a.done && b.done) {
+      break;
+    }
+    yield [a.value, b.value];
   }
 }
 

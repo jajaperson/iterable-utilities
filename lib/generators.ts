@@ -5,7 +5,9 @@ import { kComb } from "./util.ts";
  * @param f A function which optionally takes the index as an argument and
  * returns the next item in the iterator,
  */
-export function* from<T>(f: (i?: number) => T): IterableIterator<T> {
+export function* from<T>(
+  f: (() => T) | ((i: number) => T)
+): IterableIterator<T> {
   let index = 0;
   while (true) {
     yield f(index);

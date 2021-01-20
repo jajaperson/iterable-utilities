@@ -16,4 +16,4 @@ import * as iter from "https://deno.land/x/iter@v0.1.0/mod.ts";
 - [x] Make a roadmap
 - [x] Deploy to [`deno.land/x/`](https://deno.land/x/)
 - [ ] Implement reducers
-- [ ] Implement testing
+- [x] Implement testing
