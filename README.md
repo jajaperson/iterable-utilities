@@ -1,4 +1,4 @@
-# Iterable Utilities
+# Iterable Utilities [![Build Status](https://img.shields.io/github/workflow/status/jajaperson/iterable-utilities/Test%20Deno%20Module)](https://github.com/jajaperson/iterable-utilities/actions?query=workflow%3A%22Test+Deno+Module%22)
 
 A bunch of utilities for working with iterables, many inspired by the native
 array methods.
