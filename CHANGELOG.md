@@ -8,7 +8,9 @@ and this project adheres to
 
 ## [Unreleased]
 
-## Added
+## [0.2.0] - 2021-01-22
+
+### Added
 
 - More unit tests.
 - Better documentation via [TSDoc](https://tsdoc.org)
@@ -19,7 +21,7 @@ and this project adheres to
 - Generators
   - `iter.create.increments()` to create an endless incremementing interator.
 
-## Changed
+### Changed
 
 - Clear separation of internal API.
 - Generators
@@ -55,5 +57,6 @@ and this project adheres to
 
 [unreleased]:
   https://github.com/jajaperson/iterable-utilities/compare/v1.1.0...HEAD
+[0.2.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.2.0
 [0.1.1]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.1.1
 [0.1.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.1.0

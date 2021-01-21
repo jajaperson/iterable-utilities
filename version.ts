@@ -1,2 +1,2 @@
 /** Version of the package */
-export const VERSION = "0.1.1";
+export const VERSION = "0.2.0";
