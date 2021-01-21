@@ -11,6 +11,11 @@ import * as iter from "https://deno.land/x/iter/mod.ts";
 import * as iter from "https://deno.land/x/iter@v0.1.1/mod.ts";
 ```
 
+## API
+
+API documentation can be found
+[here](https://doc.deno.land/https/deno.land/x/iter/mod.ts)
+
 ## Roadmap
 
 - [x] Make a roadmap
