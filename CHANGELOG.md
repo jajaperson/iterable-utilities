@@ -3,7 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+and this project adheres to
+[Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
@@ -12,13 +13,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - More unit tests.
 - Better documentation via [TSDoc](https://tsdoc.org)
 - Reducers
-  - `reduce()` (like `Array.prototype.reduce`)
-  - `some()` (like `Array.prototype.some`)
-  - `every()` (like `Array.prototype.every`)
+  - `iter.reduce()` (like `Array.prototype.reduce`)
+  - `iter.some()` (like `Array.prototype.some`)
+  - `iter.every()` (like `Array.prototype.every`)
+- Generators
+  - `iter.create.increments()` to create an endless incremementing interator.
 
 ## Changed
 
 - Clear separation of internal API.
+- Generators
+  - Old `iter.create.from()` is now `iter.create.endlessFrom()`.
+    `iter.create.from()` now creates an iterator from a function returning
+    iterator result objects.
 
 ## [0.1.1] - 2021-01-20
 
@@ -46,6 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `iter.pair()` for zipping two iterables.
   - `iter.concat` (like `Array.prototype.concat`)
 
-[unreleased]: https://github.com/jajaperson/iterable-utilities/compare/v1.1.0...HEAD
+[unreleased]:
+  https://github.com/jajaperson/iterable-utilities/compare/v1.1.0...HEAD
 [0.1.1]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.1.1
 [0.1.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.1.0

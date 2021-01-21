@@ -23,11 +23,18 @@ Deno.test("randomNumbers", () => {
   assert(typeof randomNumbers.next().value === "number");
 });
 
-Deno.test("from", () => {
+Deno.test("endlessFrom", () => {
   const id: (x: number) => number = (x) => x;
-  const counting = generators.from(id);
+  const counting = generators.endlessFrom(id);
 
   for (let i = 0; i < 20; i++) {
     assertEquals(i, counting.next().value);
   }
+});
+
+Deno.test("from", () => {
+  const terminateAfter6 = generators.from((index) =>
+    index > 6 ? { value: undefined, done: true } : { value: index }
+  );
+  assertEquals([...terminateAfter6].length, 7);
 });
