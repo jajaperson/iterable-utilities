@@ -21,7 +21,7 @@ export interface MapCallback<T, U> {
  */
 export function* map<T, U = T>(
   it: Iterable<T>,
-  f: MapCallback<T, U>
+  f: MapCallback<T, U>,
 ): IterableIterator<U> {
   for (const i of it) {
     yield f(i);

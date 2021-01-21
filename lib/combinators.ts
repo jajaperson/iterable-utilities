@@ -10,7 +10,7 @@
  */
 export function* pair<T, U>(
   it1: Iterable<T>,
-  it2: Iterable<U>
+  it2: Iterable<U>,
 ): IterableIterator<[T, U]> {
   const iterator1 = it1[Symbol.iterator]();
   const iterator2 = it2[Symbol.iterator]();
