@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - More unit tests.
 - Better documentation via [TSDoc](https://tsdoc.org)
+- Reducers
+  - `reduce()` (like `Array.prototype.reduce`)
+  - `some()` (like `Array.prototype.some`)
+  - `every()` (like `Array.prototype.every`)
 
 ## Changed
 

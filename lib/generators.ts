@@ -2,10 +2,14 @@ import { kComb } from "./internal/util.ts";
 
 /**
  * {@link from | `from`} generator callback.
- * @callback FromCallback
- * @param index - The current index.
+ * @typeParam T - see {@link from | `from`}
  */
 export interface FromCallback<T> {
+  /**
+   * {@link from | `from`} generator callback.
+   * @callback FromCallback
+   * @param index - The current index.
+   */
   (index: number): T;
 }
 
