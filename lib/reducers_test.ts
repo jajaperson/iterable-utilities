@@ -56,7 +56,7 @@ Deno.test("some", () => {
     assertEquals(
       reducers.some(arr, (x) => x === i),
       arr.some((x) => x === i),
-    )
+    ),
   );
 });
 
@@ -75,6 +75,28 @@ Deno.test("all", () => {
     assertEquals(
       reducers.every(arr, (x) => x > i),
       arr.every((x) => x > i),
-    )
+    ),
+  );
+});
+
+Deno.test("find", () => {
+  assertEquals(
+    reducers.find([0], (x) => x > 0),
+    undefined,
+  );
+  assertEquals(
+    reducers.find([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], (x) => x < 4),
+    3,
+  );
+});
+
+Deno.test("findIndex", () => {
+  assertEquals(
+    reducers.findIndex([0], (x) => x > 0),
+    -1,
+  );
+  assertEquals(
+    reducers.findIndex([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], (x) => x < 4),
+    6,
   );
 });

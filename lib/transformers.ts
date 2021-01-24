@@ -1,4 +1,5 @@
 import { stripIterable } from "./internal/util.ts";
+import { IterablePredicateCallback } from "./types.ts";
 
 /**
  * @link map | `map`} callback.
@@ -32,10 +33,10 @@ export function* map<T, U = T>(
   it: Iterable<T>,
   f: MapCallback<T, U>,
 ): IterableIterator<U> {
-  let i = 0;
+  let index = 0;
   for (const item of it) {
-    yield f(item, i, stripIterable(it));
-    i++;
+    yield f(item, index, stripIterable(it));
+    index++;
   }
 }
 
@@ -52,3 +53,28 @@ export function* take<T>(it: Iterable<T>, n: number): IterableIterator<T> {
     yield iterator.next().value;
   }
 }
+
+/**
+ * Returns the items of an iterable that meet the condition specified in a
+ * callback function.
+ * @param it - The iterable being filtered
+ * @param {IterablePredicateCallback} predicate - A function that accepts up to
+ * three arguments. The filter method calls the predicate function one time for
+ * each item in the iterable.
+ * @typeParam T - The type of items in `it`.
+ * @returns A new iterable
+ */
+export function* filter<T>(
+  it: Iterable<T>,
+  predicate: IterablePredicateCallback<T>,
+): IterableIterator<T> {
+  let index = 0;
+  for (const item of it) {
+    if (predicate(item, index, stripIterable(it))) {
+      yield item;
+    }
+    index++;
+  }
+}
+
+// export function flat

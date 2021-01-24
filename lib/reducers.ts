@@ -129,3 +129,53 @@ export function every<T>(
     (acc) => !acc,
   );
 }
+
+/**
+ * Returns the value of the first item in the iterable where predicate is true,
+ * and undefined otherwise.
+ * @param it - The iterable to search.
+ * @param {IterablePredicateCallback} predicate - Find calls predicate once for
+ * each item in the iterable, in ascending order, until it finds one where
+ * predicate returns true. If such an item is found, find immediately returns
+ * that element value, Otherwise, find returns undefined.
+ * @typeParams T - The type of items in `it`.
+ * @returns The first item which satisfied `predicate`.
+ */
+export function find<T>(
+  it: Iterable<T>,
+  predicate: IterablePredicateCallback<T>,
+): T | undefined {
+  let index = 0;
+  for (const item of it) {
+    if (predicate(item, index, stripIterable(it))) {
+      return item;
+    }
+    index++;
+  }
+  return undefined;
+}
+
+/**
+ * Returns the index of the first item in the iterable where predicate is true,
+ * and -1 otherwise.
+ * @param it - The iterable to search.
+ * @param {IterablePredicateCallback} predicate find calls predicate once for
+ * each item in the iterable, in ascending order, until it finds one where
+ * predicate returns true. If such an item is found, findIndex immediately
+ * returns that element index. Otherwise, findIndex returns -1.
+ * @typeParams T - The type of items in `it`.
+ * @returns The first item which satisfied `predicate`.
+ */
+export function findIndex<T>(
+  it: Iterable<T>,
+  predicate: IterablePredicateCallback<T>,
+): number {
+  let index = 0;
+  for (const item of it) {
+    if (predicate(item, index, stripIterable(it))) {
+      return index;
+    }
+    index++;
+  }
+  return -1;
+}

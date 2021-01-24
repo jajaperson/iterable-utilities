@@ -8,6 +8,14 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Reducers
+  - `iter.find()` (like `Array.prototype.find`)
+  - `iter.findIndex()` (like `Array.prototype.findIndex`)
+- Transformers
+  - `iter.filter()` (like `Array.prototype.filter`)
+
 ## [0.2.0] - 2021-01-22
 
 ### Added
