@@ -56,7 +56,7 @@ Deno.test("some", () => {
     assertEquals(
       reducers.some(arr, (x) => x === i),
       arr.some((x) => x === i),
-    ),
+    )
   );
 });
 
@@ -75,7 +75,7 @@ Deno.test("all", () => {
     assertEquals(
       reducers.every(arr, (x) => x > i),
       arr.every((x) => x > i),
-    ),
+    )
   );
 });
 
