@@ -15,10 +15,17 @@ The module is currently hosted on [deno.land/x/](https://deno.land/x/).
 ```ts
 import * as iter from "https://deno.land/x/iter/mod.ts";
 // or with a version
-import * as iter from "https://deno.land/x/iter@v0.2.0/mod.ts";
+import * as iter from "https://deno.land/x/iter@v1.0.0/mod.ts";
 ```
 
 ## Conventions
+
+## API
+
+API documentation can be found
+[here](https://doc.deno.land/https/deno.land/x/iter/mod.ts)
+
+### Return types
 
 All functions which return iterables (generators, transformers, and combinators)
 return the `IterableIterator` type, meaning they return an iterator which itself
@@ -34,11 +41,6 @@ console.log(randomNumbers.next().value);
 console.log(randomNumbers[Symbol.iterator]().next().value);
 // Note these will still generate two different values.
 ```
-
-## API
-
-API documentation can be found
-[here](https://doc.deno.land/https/deno.land/x/iter/mod.ts)
 
 ## `Array.prototype` parity completeness
 
