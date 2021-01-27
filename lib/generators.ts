@@ -14,6 +14,13 @@ export interface FromCallback<T> {
   (index: number): IteratorResult<T>;
 }
 
+/**
+ * Creates an iterator from IteratorResults returned by a function.
+ * @param {FromCallback} f - A function which optianally takes the index as an
+ * argument and returns the next IteratorResult.
+ * @typeParam T - The type of values for the returned iterator.
+ * @returns An iterator containing the `value` property of the results of `f`.
+ */
 export function* from<T>(f: FromCallback<T>): IterableIterator<T> {
   let index = 0;
   while (true) {
@@ -42,11 +49,10 @@ export interface EndlessFromCallback<T> {
 
 /**
  * Creates an endless iterator from the return values of a function.
- * @param {EndlessFromCallback} f - A function which optionally takes the index as an
- * argument and
- * returns the next item in the iterator.
+ * @param {EndlessFromCallback} f - A function which optionally takes the index
+ * as an srgument and returns the next item in the iterator.
  * @typeParam T - The return type of `f`, and thus the item type of the new
- * iterator
+ * iterator.
  * @returns An iterator containing the results of `f`.
  */
 export function* endlessFrom<T>(
