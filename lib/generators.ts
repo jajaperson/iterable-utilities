@@ -25,9 +25,7 @@ export function* from<T>(f: FromCallback<T>): IterableIterator<T> {
   let index = 0;
   while (true) {
     const next = f(index);
-    if (next.done) {
-      return next.value;
-    }
+    if (next.done) return next.value;
     yield next.value;
     index++;
   }

@@ -76,9 +76,7 @@ export function reduce<T, U>(
   let accumulator = initialValue;
   for (const item of it) {
     accumulator = reducer(accumulator, item, index, stripIterable(it));
-    if (stop(accumulator, item, index, stripIterable(it))) {
-      break;
-    }
+    if (stop(accumulator, item, index, stripIterable(it))) break;
     index++;
   }
   return accumulator;
@@ -147,9 +145,7 @@ export function find<T>(
 ): T | undefined {
   let index = 0;
   for (const item of it) {
-    if (predicate(item, index, stripIterable(it))) {
-      return item;
-    }
+    if (predicate(item, index, stripIterable(it))) return item;
     index++;
   }
   return undefined;
@@ -172,9 +168,7 @@ export function findIndex<T>(
 ): number {
   let index = 0;
   for (const item of it) {
-    if (predicate(item, index, stripIterable(it))) {
-      return index;
-    }
+    if (predicate(item, index, stripIterable(it))) return index;
     index++;
   }
   return -1;

@@ -17,9 +17,7 @@ export function* pair<T, U>(
   while (true) {
     const a = iterator1.next();
     const b = iterator2.next();
-    if (a.done && b.done) {
-      break;
-    }
+    if (a.done && b.done) break;
     yield [a.value, b.value];
   }
 }

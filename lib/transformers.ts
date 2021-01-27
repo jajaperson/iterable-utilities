@@ -106,5 +106,3 @@ export function* filter<T>(
     index++;
   }
 }
-
-// export function flat
