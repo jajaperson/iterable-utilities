@@ -1,5 +1,5 @@
 import { stripIterable } from "./internal/util.ts";
-import { IterablePredicateCallback } from "./types.ts";
+import { IterablePredicateCallback, PredicateCallback } from "./types.ts";
 
 /**
  * @link map | `map`} callback.
@@ -23,8 +23,7 @@ export interface MapCallback<T, U> {
  * returns a new iterator of the results.
  * @param it - The iterable being mapped.
  * @param {MapCallback} f - A function that accepts up to three arguments. The
- * map method calls the callbackfn function one time for each element in the
- * array.
+ * map method calls `f` function one time for each item in the iterable.
  * @typeParam T - Type of items in `it`.
  * @typeParam U - Return type of `f`.
  * @returns An iterator of `f` applied to items of `it`.
@@ -51,6 +50,37 @@ export function* take<T>(it: Iterable<T>, n: number): IterableIterator<T> {
   const iterator = it[Symbol.iterator]();
   for (let i = 0; i < n; i++) {
     yield iterator.next().value;
+  }
+}
+
+/**
+ * Returns a new iterable which yields until `f` returns true.
+ * true.
+ * @param it - The iterable being cut.
+ * @param {IterablePredicateCallback} f - A function that accepts up to three
+ * arguments. The cut method calls `f` one time for each item in the iterable.
+ * @param includeLast - Whether the item for which `f` returns true should be
+ * included.
+ * @typeParam T - The type of items in both `it` and the returned iterator.
+ * @returns A new iterator of `it` which terminates
+ * @alias until
+ */
+export function* until<T>(
+  it: Iterable<T>,
+  f: IterablePredicateCallback<T>,
+  includeLast = true,
+): IterableIterator<T> {
+  let index = 0;
+  for (const item of it) {
+    const done = f(item, index, stripIterable(it));
+    if (done) {
+      if (includeLast) {
+        yield item;
+      }
+      break;
+    }
+    yield item;
+    index++;
   }
 }
 

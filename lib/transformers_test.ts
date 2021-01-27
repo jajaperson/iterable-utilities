@@ -27,3 +27,14 @@ Deno.test("filter", () => {
     assertEquals(even(num), true);
   }
 });
+
+Deno.test("cut", () => {
+  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const cutNumbers = [...transformers.until(numbers, (n) => n === 5)];
+  const cutNumbersExclusive = [
+    ...transformers.until(numbers, (n) => n === 5, false),
+  ];
+
+  assertEquals(cutNumbers[cutNumbers.length - 1], 5);
+  assertEquals(cutNumbersExclusive[cutNumbersExclusive.length - 1], 4);
+});

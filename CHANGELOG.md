@@ -15,6 +15,7 @@ and this project adheres to
   - `iter.findIndex()` (like `Array.prototype.findIndex`)
 - Transformers
   - `iter.filter()` (like `Array.prototype.filter`)
+  - `iter.until()` to cut off an iterable when a predicate returns true
 
 ## [0.2.0] - 2021-01-22
 
