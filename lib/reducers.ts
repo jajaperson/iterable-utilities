@@ -106,6 +106,21 @@ export function some<T>(
 }
 
 /**
+ * Determines whether an iterable includes a certain element, returning true or
+ * false as appropriate.
+ * @param it - The iterable to be tested.
+ * @param value - The item to search for.
+ * @typeParam T - The type of items in `it`.
+ * @returns Whether `value` is in `it`.
+ */
+export function includes<T>(it: Iterable<T>, value: T): boolean {
+  for (const item of it) {
+    if (item === value) return true;
+  }
+  return false;
+}
+
+/**
  * Determines whether the specified callback function returns true for all items
  * in an iterable.
  * @param it - The iterable to be tested.

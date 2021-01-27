@@ -38,3 +38,10 @@ Deno.test("cut", () => {
   assertEquals(cutNumbers[cutNumbers.length - 1], 5);
   assertEquals(cutNumbersExclusive[cutNumbersExclusive.length - 1], 4);
 });
+
+Deno.test("indexedPairs", () => {
+  const numbers = [9, 8, 7, 6, 5, 4, 3, 2, 1];
+  [...transformers.indexedPairs(numbers)].forEach(([i, v]) => {
+    assertEquals(i + v, 9);
+  });
+});

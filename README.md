@@ -43,12 +43,12 @@ API documentation can be found
 ## `Array.prototype` parity completeness
 
 - [x] `concat`
-- [ ] `entries`
+- [x] `entries` (as `indexedPairs`)
 - [x] `every`
 - [x] `filter`
 - [x] `find`
 - [x] `findIndex`
-- [ ] `includes`
+- [x] `includes`
 - [x] `map`
 - [x] `reduce`
 - [x] `some`

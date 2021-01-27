@@ -13,9 +13,11 @@ and this project adheres to
 - Reducers
   - `iter.find()` (like `Array.prototype.find`)
   - `iter.findIndex()` (like `Array.prototype.findIndex`)
+  - `iter.includes()` (like `Array.prototype.includes`)
 - Transformers
   - `iter.filter()` (like `Array.prototype.filter`)
   - `iter.until()` to cut off an iterable when a predicate returns true
+  - `iter.indexedPairs` (like `Array.prototype.entries`)
 
 ## [0.2.0] - 2021-01-22
 

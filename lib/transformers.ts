@@ -106,3 +106,18 @@ export function* filter<T>(
     index++;
   }
 }
+
+/**
+ * Converts an iterable into a series of pairs of indices and values. Similar to
+ * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/entries | `Array.prototype.entries`}.
+ * @param it - The iterable being indexed.
+ * @typeParam T - The type of items in `it`.
+ * @returns An iterator over pairs of indices and the items in `it`.
+ */
+export function* indexedPairs<T>(it: Iterable<T>): Iterable<[number, T]> {
+  let index = 0;
+  for (const item of it) {
+    yield [index, item];
+    index++;
+  }
+}
