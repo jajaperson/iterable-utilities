@@ -18,12 +18,12 @@ import * as iter from "https://deno.land/x/iter/mod.ts";
 import * as iter from "https://deno.land/x/iter@v1.0.0/mod.ts";
 ```
 
-## Conventions
-
 ## API
 
 API documentation can be found
 [here](https://doc.deno.land/https/deno.land/x/iter/mod.ts)
+
+## Conventions
 
 ### Return types
 
