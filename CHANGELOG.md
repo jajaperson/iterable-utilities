@@ -18,6 +18,7 @@ and this project adheres to
 
 - Everything which used to return the `IterableIterator` type now returns the
   `Iterable` type. This also means that returned iterables are not use-once.
+- Iterables are no longer stripped before being passed to callbacks.
 
 ## [1.0.0] - 2021-01-27
 

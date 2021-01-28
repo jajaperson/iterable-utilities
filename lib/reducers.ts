@@ -1,4 +1,4 @@
-import { kComb, stripIterable } from "./internal/util.ts";
+import { kComb } from "./internal/util.ts";
 import { IterablePredicateCallback } from "./types.ts";
 import { map } from "./transformers.ts";
 
@@ -75,8 +75,8 @@ export function reduce<T, U>(
   let index = 0;
   let accumulator = initialValue;
   for (const item of it) {
-    accumulator = reducer(accumulator, item, index, stripIterable(it));
-    if (stop(accumulator, item, index, stripIterable(it))) break;
+    accumulator = reducer(accumulator, item, index, it);
+    if (stop(accumulator, item, index, it)) break;
     index++;
   }
   return accumulator;
@@ -160,7 +160,7 @@ export function find<T>(
 ): T | undefined {
   let index = 0;
   for (const item of it) {
-    if (predicate(item, index++, stripIterable(it))) return item;
+    if (predicate(item, index++, it)) return item;
   }
   return undefined;
 }
@@ -182,7 +182,7 @@ export function findIndex<T>(
 ): number {
   let index = 0;
   for (const item of it) {
-    if (predicate(item, index, stripIterable(it))) return index;
+    if (predicate(item, index, it)) return index;
     index++;
   }
   return -1;

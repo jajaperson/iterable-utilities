@@ -1,5 +1,4 @@
-import { stripIterable } from "./internal/util.ts";
-import { IterablePredicateCallback, PredicateCallback } from "./types.ts";
+import { IterablePredicateCallback } from "./types.ts";
 
 /**
  * @link map | `map`} callback.
@@ -35,7 +34,7 @@ export function map<T, U = T>(
   return {
     *[Symbol.iterator](): IterableIterator<U> {
       let index = 0;
-      for (const item of it) yield f(item, index++, stripIterable(it));
+      for (const item of it) yield f(item, index++, it);
     },
   };
 }
@@ -77,7 +76,7 @@ export function until<T>(
     *[Symbol.iterator](): IterableIterator<T> {
       let index = 0;
       for (const item of it) {
-        const done = f(item, index++, stripIterable(it));
+        const done = f(item, index++, it);
         if (done) {
           if (includeLast) {
             yield item;
@@ -108,7 +107,7 @@ export function filter<T>(
     *[Symbol.iterator](): IterableIterator<T> {
       let index = 0;
       for (const item of it) {
-        if (predicate(item, index++, stripIterable(it))) {
+        if (predicate(item, index++, it)) {
           yield item;
         }
       }
