@@ -1,4 +1,4 @@
-export { VERSION } from "./version.ts";
+export { VERSION, LICENSE } from "./version.ts";
 export * from "./lib/transformers.ts";
 export * from "./lib/combinators.ts";
 export * from "./lib/reducers.ts";

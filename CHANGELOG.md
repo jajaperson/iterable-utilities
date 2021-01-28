@@ -10,6 +10,7 @@ and this project adheres to
 
 ### Added
 
+- Export `LICENSE` from `version.ts` and `mod.ts`
 - Transformers
   - `iter.remember` so that an iterable can be iterated over multiple times and
     be guaranteed to yield the same results.
