@@ -15,20 +15,23 @@ export interface FromCallback<T> {
 }
 
 /**
- * Creates an iterator from IteratorResults returned by a function.
+ * Creates an iterable from IteratorResults returned by a function.
  * @param {FromCallback} f - A function which optianally takes the index as an
  * argument and returns the next IteratorResult.
- * @typeParam T - The type of values for the returned iterator.
- * @returns An iterator containing the `value` property of the results of `f`.
+ * @typeParam T - The type of values for the returned iterable.
+ * @returns An iterable containing the `value` property of the results of `f`.
  */
-export function* from<T>(f: FromCallback<T>): IterableIterator<T> {
-  let index = 0;
-  while (true) {
-    const next = f(index);
-    if (next.done) return next.value;
-    yield next.value;
-    index++;
-  }
+export function from<T>(f: FromCallback<T>): Iterable<T> {
+  return {
+    *[Symbol.iterator](): IterableIterator<T> {
+      let index = 0;
+      while (true) {
+        const next = f(index++);
+        if (next.done) return next.value;
+        yield next.value;
+      }
+    },
+  };
 }
 
 /**
@@ -46,46 +49,59 @@ export interface EndlessFromCallback<T> {
 }
 
 /**
- * Creates an endless iterator from the return values of a function.
+ * Creates an endless iterable from the return values of a function.
  * @param {EndlessFromCallback} f - A function which optionally takes the index
- * as an srgument and returns the next item in the iterator.
+ * as an argument and returns the next item in the iterable.
  * @typeParam T - The return type of `f`, and thus the item type of the new
  * iterator.
- * @returns An iterator containing the results of `f`.
+ * @returns An iterable containing the results of `f`.
  */
-export function* endlessFrom<T>(
-  f: EndlessFromCallback<T>,
-): IterableIterator<T> {
-  let index = 0;
-  while (true) {
-    yield f(index);
-    index++;
-  }
+export function endlessFrom<T>(f: EndlessFromCallback<T>): Iterable<T> {
+  return {
+    *[Symbol.iterator](): IterableIterator<T> {
+      let index = 0;
+      while (true) {
+        yield f(index++);
+      }
+    },
+  };
 }
 
 /**
  * Creates an endless iterable of pseudorandom numbers.
- * @returns An iterator containing lazily calculated pseudorandom numbers.
+ * @returns An iterable containing lazily calculated pseudorandom numbers.
  */
-export function* randomNumbers(): IterableIterator<number> {
-  yield* endlessFrom(Math.random);
+export function randomNumbers(): Iterable<number> {
+  return {
+    *[Symbol.iterator](): IterableIterator<number> {
+      yield* endlessFrom(Math.random);
+    },
+  };
 }
 
 /**
  * Creates an endless iterable of a constant value.
- * @param value The value of all items in the returned iterator.
- * @returns An endless iterator of `value`.
+ * @param value The value of all items in the returned iterable.
+ * @returns An endless iterable of `value`.
  */
-export function* constant<T>(value: T): IterableIterator<T> {
-  yield* endlessFrom(kComb(value));
+export function constant<T>(value: T): Iterable<T> {
+  return {
+    *[Symbol.iterator](): IterableIterator<T> {
+      yield* endlessFrom(kComb(value));
+    },
+  };
 }
 
 /**
  * Creates an endless iterable of incrementing numbers.
  * @param initial - The initial value.
  * @param step - The increment amount.
- * @returns An endless iterator of incrementing numbers.
+ * @returns An endless iterable of incrementing numbers.
  */
-export function* increments(initial = 0, step = 1): IterableIterator<number> {
-  yield* endlessFrom((index) => initial + index * step);
+export function increments(initial = 0, step = 1): Iterable<number> {
+  return {
+    *[Symbol.iterator](): IterableIterator<number> {
+      yield* endlessFrom((index) => initial + index * step);
+    },
+  };
 }

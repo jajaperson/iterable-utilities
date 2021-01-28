@@ -13,8 +13,8 @@ export interface ReduceAccumulatorCallback<T, U> {
    * {@link reduce | `reduce`} accumulator callback.
    * @callback ReduceAccumulatorCallback
    * @param accumulator Accumulates the callback's return values. Is the
-   * accumulated value previously returned in the last invocation of the callback
-   * --- or initialValue, if supplied.
+   * accumulated value previously returned in the last invocation of the
+   * callback  --- or initialValue, if supplied.
    * @param currentValue The current item being processed in the iterable.
    * @param index The number of items in the iterable which have already been
    * processed,
@@ -160,8 +160,7 @@ export function find<T>(
 ): T | undefined {
   let index = 0;
   for (const item of it) {
-    if (predicate(item, index, stripIterable(it))) return item;
-    index++;
+    if (predicate(item, index++, stripIterable(it))) return item;
   }
   return undefined;
 }

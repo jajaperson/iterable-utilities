@@ -53,10 +53,10 @@ Deno.test("chunkify", () => {
   const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   assertThrows(() => {
-    transformers.chunkify(numbers, 0).next();
+    transformers.chunkify(numbers, 0);
   });
   assertThrows(() => {
-    transformers.chunkify(numbers, -5).next();
+    transformers.chunkify(numbers, -5);
   });
 
   for (const [x, y] of transformers.chunkify(numbers, 2)) {

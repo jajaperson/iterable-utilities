@@ -23,25 +23,6 @@ import * as iter from "https://deno.land/x/iter@v1.0.0/mod.ts";
 API documentation can be found
 [here](https://doc.deno.land/https/deno.land/x/iter/mod.ts)
 
-## Conventions
-
-### Return types
-
-All functions which return iterables (generators, transformers, and combinators)
-return the `IterableIterator` type, meaning they return an iterator which itself
-is iterable. This means both of these work.
-
-```ts
-import * as iter from "https://deno.land/x/iter/mod.ts";
-
-const randomNumbers = iter.create.randomNumbers();
-// As iterator
-console.log(randomNumbers.next().value);
-// Or as iterable
-console.log(randomNumbers[Symbol.iterator]().next().value);
-// Note these will still generate two different values.
-```
-
 ## `Array.prototype` parity completeness
 
 - [x] `concat`

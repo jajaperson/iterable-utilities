@@ -14,6 +14,11 @@ and this project adheres to
   - Chunkify inspired by
     [@sindresorhus/chunkify](https://ghub.io/@sindresorhus/chunkify)
 
+### Changed
+
+- Everything which used to return the `IterableIterator` type now returns the
+  `Iterable` type. This also means that returned iterables are not use-once.
+
 ## [1.0.0] - 2021-01-27
 
 ### Added

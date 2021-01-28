@@ -1,6 +1,8 @@
 import { assertEquals } from "https://deno.land/std@0.84.0/testing/asserts.ts";
 import * as combinators from "./combinators.ts";
 
+// TODO: Test for mutability and state
+
 Deno.test("pair", () => {
   const testArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   // Array.prototype.reverse doesn't affect the iterator
