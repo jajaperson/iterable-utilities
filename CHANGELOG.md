@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Transformers
+  - Chunkify inspired by
+    [@sindresorhus/chunkify](https://ghub.io/@sindresorhus/chunkify)
+
 ## [1.0.0] - 2021-01-27
 
 ### Added

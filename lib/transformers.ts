@@ -121,3 +121,44 @@ export function* indexedPairs<T>(it: Iterable<T>): Iterable<[number, T]> {
     index++;
   }
 }
+
+/**
+ * Splits an iterable into evenly sized chunks. See
+ * {@link https://ghub.io/@sindresorhus/chunkify | @sindresorhus/chunkify }
+ * @param it - The iterable being chunkified.
+ * @param chunkSize - The size of each chunk.
+ * @typeParam T - The type of items in `it`.
+ * @returns A new iterator over chunk arrays.
+ */
+export function* chunkify<T>(
+  it: Iterable<T>,
+  chunkSize: number,
+): IterableIterator<T[]> {
+  if (!(Number.isSafeInteger(chunkSize) && chunkSize > 0)) {
+    throw new RangeError(
+      `Expected \`chunkSize\` to be an integer from 1 and up, got \`${chunkSize}\``,
+    );
+  }
+
+  if (Array.isArray(it)) {
+    for (let index = 0; index < it.length; index += chunkSize) {
+      yield it.slice(index, index + chunkSize);
+      return;
+    }
+  }
+
+  let chunk = [];
+
+  for (const value of it) {
+    chunk.push(value);
+
+    if (chunk.length === chunkSize) {
+      yield chunk;
+      chunk = [];
+    }
+  }
+
+  if (chunk.length > 0) {
+    yield chunk;
+  }
+}

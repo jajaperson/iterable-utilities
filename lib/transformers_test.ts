@@ -1,6 +1,9 @@
-import { assertEquals } from "https://deno.land/std@0.84.0/testing/asserts.ts";
+import {
+  assertEquals,
+  assertThrows,
+} from "https://deno.land/std@0.84.0/testing/asserts.ts";
 import * as transformers from "./transformers.ts";
-// import s
+import { stripIterable } from "./internal/util.ts";
 
 Deno.test("take", () => {
   const testArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -44,4 +47,23 @@ Deno.test("indexedPairs", () => {
   [...transformers.indexedPairs(numbers)].forEach(([i, v]) => {
     assertEquals(i + v, 9);
   });
+});
+
+Deno.test("chunkify", () => {
+  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  assertThrows(() => {
+    transformers.chunkify(numbers, 0).next();
+  });
+  assertThrows(() => {
+    transformers.chunkify(numbers, -5).next();
+  });
+
+  for (const [x, y] of transformers.chunkify(numbers, 2)) {
+    assertEquals(x + y, 2 * x + 1);
+  }
+
+  for (const [x, y] of transformers.chunkify(stripIterable(numbers), 2)) {
+    assertEquals(x + y, 2 * x + 1);
+  }
 });
