@@ -174,3 +174,31 @@ export function chunkify<T>(it: Iterable<T>, chunkSize: number): Iterable<T[]> {
     },
   };
 }
+
+/**
+ * Makes an iterable remember. Each time it is iterated over it will yield the
+ * same results.
+ * @param it - The iterable to remember
+ * @typeParam T - The type of items in `it`.
+ * @returns A new iterable which remembers.
+ */
+export function rememeber<T>(it: Iterable<T>): Iterable<T> {
+  const history = new Array<T>();
+  const iterator = it[Symbol.iterator]();
+  let done = false;
+
+  return {
+    *[Symbol.iterator](): IterableIterator<T> {
+      yield* history;
+      while (!done) {
+        const next = iterator.next();
+        done = next.done || false;
+        history.push(next.value);
+        if (done) {
+          return next.value;
+        }
+        yield next.value;
+      }
+    },
+  };
+}

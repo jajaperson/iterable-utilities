@@ -1,8 +1,10 @@
 import {
+  assert,
   assertEquals,
   assertThrows,
 } from "https://deno.land/std@0.84.0/testing/asserts.ts";
 import * as transformers from "./transformers.ts";
+import * as create from "./generators.ts";
 import { stripIterable } from "./internal/util.ts";
 
 Deno.test("take", () => {
@@ -66,4 +68,12 @@ Deno.test("chunkify", () => {
   for (const [x, y] of transformers.chunkify(stripIterable(numbers), 2)) {
     assertEquals(x + y, 2 * x + 1);
   }
+});
+
+Deno.test("rememember", () => {
+  const memIterable = transformers.rememeber(create.randomNumbers());
+  const numbers5 = transformers.take(memIterable, 5);
+  const numbers10 = transformers.take(memIterable, 10);
+
+  assertEquals([...transformers.take(numbers10, 5)], [...numbers5]);
 });

@@ -8,12 +8,18 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Transformers
+  - `iter.remember` so that an iterable can be iterated over multiple times and
+    be guaranteed to yield the same results.
+
 ## [2.0.0] - 2021-01-28
 
 ### Added
 
 - Transformers
-  - Chunkify inspired by
+  - `iter.chunkify` inspired by
     [@sindresorhus/chunkify](https://ghub.io/@sindresorhus/chunkify)
 
 ### Changed
