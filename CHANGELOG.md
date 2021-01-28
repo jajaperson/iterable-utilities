@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [2.0.0] - 2021-01-28
+
 ### Added
 
 - Transformers
@@ -86,3 +88,4 @@ and this project adheres to
 [0.1.1]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.1.1
 [0.1.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.1.0
 [1.0.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v1.0.0
+[2.0.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v2.0.0

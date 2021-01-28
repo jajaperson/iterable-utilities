@@ -15,7 +15,7 @@ The module is currently hosted on [deno.land/x/](https://deno.land/x/).
 ```ts
 import * as iter from "https://deno.land/x/iter/mod.ts";
 // or with a version
-import * as iter from "https://deno.land/x/iter@v1.0.0/mod.ts";
+import * as iter from "https://deno.land/x/iter@v2.0.0/mod.ts";
 ```
 
 ## API
