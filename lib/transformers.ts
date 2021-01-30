@@ -26,6 +26,20 @@ export interface MapCallback<T, U> {
  * @typeParam T - Type of items in `it`.
  * @typeParam U - Return type of `f`.
  * @returns An iterable of `f` applied to items of `it`.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const naturals = iter.create.increments(1);
+ * const reciprocals = iter.map(naturals, n => n**-1);
+ * const iterator = reciprocals[Symbol.iterator]();
+ *
+ * console.log(iterator.next().value); // -> 1
+ * console.log(iterator.next().value); // -> 0.5
+ * console.log(iterator.next().value); // -> 0.3333333333333333
+ * console.log(iterator.next().value); // -> 0.25
+ * console.log(iterator.next().value); // -> 0.2
+ * ```
  */
 export function map<T, U = T>(
   it: Iterable<T>,
@@ -45,6 +59,24 @@ export function map<T, U = T>(
  * @param n - The number of items to take.
  * @typeParam T - The type of items in both `it` and the returned iterable.
  * @returns A new iterable of `it` which terminates after `n` items.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const naturals = iter.create.increments(1);
+ * const first6 = iter.take(naturals, 6);
+ *
+ * for (const num of first6) {
+ *   console.log(num);
+ * }
+ *
+ * // -> 1
+ * // -> 2
+ * // -> 3
+ * // -> 4
+ * // -> 5
+ * // -> 6
+ * ```
  */
 export function take<T>(it: Iterable<T>, n: number): Iterable<T> {
   return {
@@ -65,7 +97,26 @@ export function take<T>(it: Iterable<T>, n: number): Iterable<T> {
  * included.
  * @typeParam T - The type of items in both `it` and the returned iterable.
  * @returns A new iterables of `it` which terminates
- * @alias until
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const naturals = iter.create.increments(1);
+ * const numbers = iter.until(naturals, (n) => n ** 2 > 54);
+ *
+ * for (const num of numbers) {
+ *   console.log(num);
+ * }
+ *
+ * // -> 1
+ * // -> 2
+ * // -> 3
+ * // -> 4
+ * // -> 5
+ * // -> 6
+ * // -> 7
+ * // -> 8
+ * ```
  */
 export function until<T>(
   it: Iterable<T>,
@@ -98,6 +149,21 @@ export function until<T>(
  * each item in the iterable.
  * @typeParam T - The type of items in `it`.
  * @returns A new iterable
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const naturals = iter.create.increments(1);
+ * const odds = iter.filter(naturals, (n) => n % 2 === 1);
+ * const iterator = odds[Symbol.iterator]();
+ *
+ * console.log(iterator.next().value); // -> 1
+ * console.log(iterator.next().value); // -> 3
+ * console.log(iterator.next().value); // -> 5
+ * console.log(iterator.next().value); // -> 7
+ * console.log(iterator.next().value); // -> 9
+ * console.log(iterator.next().value); // -> 11
+ * ```
  */
 export function filter<T>(
   it: Iterable<T>,
@@ -121,6 +187,21 @@ export function filter<T>(
  * @param it - The iterable being indexed.
  * @typeParam T - The type of items in `it`.
  * @returns An iterable over pairs of indices and the items in `it`.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const negatives = iter.create.increments(-1, -1);
+ * const indexedNegatives = iter.indexedPairs(negatives);
+ * const iterator = indexedNegatives[Symbol.iterator]();
+ *
+ * console.log(iterator.next().value); // -> [ 0, -1 ]
+ * console.log(iterator.next().value); // -> [ 1, -2 ]
+ * console.log(iterator.next().value); // -> [ 2, -3 ]
+ * console.log(iterator.next().value); // -> [ 3, -4 ]
+ * console.log(iterator.next().value); // -> [ 4, -5 ]
+ * console.log(iterator.next().value); // -> [ 5, -6 ]
+ * ```
  */
 export function indexedPairs<T>(it: Iterable<T>): Iterable<[number, T]> {
   return {
@@ -140,6 +221,21 @@ export function indexedPairs<T>(it: Iterable<T>): Iterable<[number, T]> {
  * @param chunkSize - The size of each chunk.
  * @typeParam T - The type of items in `it`.
  * @returns A new iterable over chunk arrays.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const naturals = iter.create.increments(-1, -1);
+ * const chunks = iter.chunkify(naturals, 3);
+ * const iterator = chunks[Symbol.iterator]();
+ *
+ * console.log(iterator.next().value); // -> [ 0, -1 ]
+ * console.log(iterator.next().value); // -> [ 1, -2 ]
+ * console.log(iterator.next().value); // -> [ 2, -3 ]
+ * console.log(iterator.next().value); // -> [ 3, -4 ]
+ * console.log(iterator.next().value); // -> [ 4, -5 ]
+ * console.log(iterator.next().value); // -> [ 5, -6 ]
+ * ```
  */
 export function chunkify<T>(it: Iterable<T>, chunkSize: number): Iterable<T[]> {
   if (!(Number.isSafeInteger(chunkSize) && chunkSize > 0)) {
@@ -181,6 +277,22 @@ export function chunkify<T>(it: Iterable<T>, chunkSize: number): Iterable<T[]> {
  * @param it - The iterable to remember
  * @typeParam T - The type of items in `it`.
  * @returns A new iterable which remembers.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const permRandomNumbers = iter.rememeber(iter.create.randomNumbers());
+ * const iterator1 = permRandomNumbers[Symbol.iterator]();
+ * const iterator2 = permRandomNumbers[Symbol.iterator]();
+ *
+ * console.log(iterator1.next().value); // ~> 0.1363627616298313
+ * console.log(iterator1.next().value); // ~> 0.20839783736895812
+ * console.log(iterator1.next().value); // ~> 0.30540840030529215
+ *
+ * console.log(iterator2.next().value); // ~> 0.1363627616298313
+ * console.log(iterator2.next().value); // ~> 0.20839783736895812
+ * console.log(iterator2.next().value); // ~> 0.30540840030529215
+ * ```
  */
 export function rememeber<T>(it: Iterable<T>): Iterable<T> {
   const history = new Array<T>();

@@ -65,6 +65,21 @@ export interface ReduceStopCallback<T, U> {
  * @typeParam T - Type of items in `it`.
  * @typeParam U - Type of accumulator and result.
  * @returns The final accumulator value.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter";
+ *
+ * const naturals = iter.create.increments(1);
+ * // The first triangular number which is a multiple of 13
+ * const luckyNumber = iter.reduce(
+ *   naturals,
+ *   (tot, n) => tot + n,
+ *   0,
+ *   (tot) => tot % 13 === 0,
+ * );
+ *
+ * console.log(luckyNumber); // -> 78
+ * ```
  */
 export function reduce<T, U>(
   it: Iterable<T>,
@@ -85,12 +100,27 @@ export function reduce<T, U>(
 /**
  * Determines whether the specified callback function returns true for any item
  * in an iterable.
+ *
+ * :warning: When ran on an endless iterable for which `predicate` never returns
+ * true, this method will never return.
  * @param it - The iterable to be tested.
  * @param {IterablePredicateCallback} predicate A function that accepts up to
  * three arguments. The some method calls the predicate function for each
  * element in the array until the predicate returns a value
  * @typeParam T - The type of items in `it`.
  * @returns Whether any of the items in `it` predicate true.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter";
+ *
+ * const naturals = iter.create.increments(1);
+ * const hasEvens = iter.some(naturals, (n) => n % 2 === 0);
+ *
+ * console.log(hasEvens); // -> true
+ *
+ * // Will never return.
+ * // const hasNeg = iter.some(naturals, (n) => n < 0);
+ * ```
  */
 export function some<T>(
   it: Iterable<T>,
@@ -108,10 +138,25 @@ export function some<T>(
 /**
  * Determines whether an iterable includes a certain element, returning true or
  * false as appropriate.
+ *
+ * :warning: When ran on an endless iterable which does not contain `value`,
+ * this method never returns.
  * @param it - The iterable to be tested.
  * @param value - The item to search for.
  * @typeParam T - The type of items in `it`.
  * @returns Whether `value` is in `it`.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter";
+ *
+ * const naturals = iter.create.increments(1);
+ * const has100 = iter.includes(naturals, 100);
+ *
+ * console.log(has100); // -> true
+ *
+ * // Will never return.
+ * // const has0 = iter.includes(naturals, 0);
+ * ```
  */
 export function includes<T>(it: Iterable<T>, value: T): boolean {
   for (const item of it) {
@@ -123,12 +168,27 @@ export function includes<T>(it: Iterable<T>, value: T): boolean {
 /**
  * Determines whether the specified callback function returns true for all items
  * in an iterable.
+ *
+ * :warning: When ran on an endless iterable for which `predicate` never returns
+ * false, this method will never return.
  * @param it - The iterable to be tested.
  * @param {IterablePredicateCallback} predicate A function that accepts up to
  * three arguments. The some method calls the predicate function for each
  * element in the array until the predicate returns a value
  * @typeParam T - The type of items in `it`.
  * @returns Whether any of the items in `it` predicate true.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter";
+ *
+ * const naturals = iter.create.increments(1);
+ * const allOdd = iter.every(naturals, (n) => n % 2 === 1);
+ *
+ * console.log(allOdd); // -> false
+ *
+ * // Will never return.
+ * // const allPositive = iter.every(naturals, (n) => n > 0);
+ * ```
  */
 export function every<T>(
   it: Iterable<T>,
@@ -153,6 +213,19 @@ export function every<T>(
  * that element value, Otherwise, find returns undefined.
  * @typeParams T - The type of items in `it`.
  * @returns The first item which satisfied `predicate`.
+ * @example
+ * ```ts
+  * import * as iter from "https://deno.land/x/iter";
+  *
+  * const naturals = iter.create.increments(1);
+  * // Find a solution to 20n = 2n² - 6n, n ∈ ℕ
+  * const solution1 = iter.find(naturals, (n) => 20 * n === 2 * n ** 2 - 6 * n);
+  *
+  * console.log(solution1); // -> 13
+  *
+  * // Will never return.
+  * // Find a solution to n³ = 3n, n ∈ ℕ
+  * // const solution2 = iter.find(naturals, (n) => n ** 3 === 3 * n);
  */
 export function find<T>(
   it: Iterable<T>,
@@ -175,6 +248,28 @@ export function find<T>(
  * returns that element index. Otherwise, findIndex returns -1.
  * @typeParams T - The type of items in `it`.
  * @returns The first item which satisfied `predicate`.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter";
+ *
+ * const naturals = iter.create.increments(1);
+ * // Find a solution to 20n = 2n² - 6n, n ∈ ℕ
+ * const solutionIndex1 = iter.findIndex(
+ *   naturals,
+ *   (n) => 20 * n === 2 * n ** 2 - 6 * n,
+ * );
+ *
+ * console.log(solutionIndex1); // -> false
+ *
+ * // Will never return.
+ * // Find a solution to n³ = 3n, n ∈ ℕ
+ * const solutionIndex2 = iter.findIndex(naturals, (n) => n ** 3 === 3 * n);
+ *
+ * const first10 = iter.take(naturals, 10);
+ * const pos = iter.findIndex(first10, x => x < 0);
+ *
+ * console.log(pos); // -> -1
+ * ```
  */
 export function findIndex<T>(
   it: Iterable<T>,
