@@ -14,6 +14,7 @@ and this project adheres to
 - Transformers
   - `iter.remember` so that an iterable can be iterated over multiple times and
     be guaranteed to yield the same results.
+- Examples to documentation
 
 ## [2.0.0] - 2021-01-28
 
