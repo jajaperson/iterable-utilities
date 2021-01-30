@@ -8,11 +8,13 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [2.1.0] - 2021-01-30
+
 ### Added
 
 - Export `LICENSE` from `version.ts` and `mod.ts`
 - Transformers
-  - `iter.remember` so that an iterable can be iterated over multiple times and
+  - `iter.remember()` so that an iterable can be iterated over multiple times and
     be guaranteed to yield the same results.
 - Examples to documentation
 
@@ -91,9 +93,11 @@ and this project adheres to
   - `iter.concat` (like `Array.prototype.concat`)
 
 [unreleased]:
-  https://github.com/jajaperson/iterable-utilities/compare/v2.0.0...HEAD
+  https://github.com/jajaperson/iterable-utilities/compare/v2.1.0...HEAD
 [0.2.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.2.0
 [0.1.1]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.1.1
 [0.1.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.1.0
 [1.0.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v1.0.0
 [2.0.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v2.0.0
+[2.1.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v2.1.0
+
