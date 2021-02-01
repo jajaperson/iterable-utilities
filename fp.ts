@@ -1,5 +1,5 @@
 import { curryIterableMethod } from "./lib/internal/util.ts";
-import * as combinators from "./lib/combinators.ts";
+import * as combinators from "./lib/combiners.ts";
 import * as reducers from "./lib/reducers.ts";
 import * as transformers from "./lib/transformers.ts";
 
