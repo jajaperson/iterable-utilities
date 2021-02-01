@@ -46,7 +46,7 @@ export function map<T, U = T>(
   f: MapCallback<T, U>,
 ): IterableCircular<U> {
   return {
-    *[Symbol.iterator](): IterableIterator<U> {
+    *[Symbol.iterator]() {
       let index = 0;
       for (const item of it) yield f(item, index++, it);
     },
@@ -80,7 +80,7 @@ export function map<T, U = T>(
  */
 export function take<T>(it: Iterable<T>, n: number): IterableCircular<T> {
   return {
-    *[Symbol.iterator](): IterableIterator<T> {
+    *[Symbol.iterator]() {
       const iterator = it[Symbol.iterator]();
       for (let i = 0; i < n; i++) yield iterator.next().value;
     },
@@ -124,7 +124,7 @@ export function until<T>(
   includeLast = true,
 ): IterableCircular<T> {
   return {
-    *[Symbol.iterator](): IterableIterator<T> {
+    *[Symbol.iterator]() {
       let index = 0;
       for (const item of it) {
         const done = f(item, index++, it);
@@ -205,7 +205,7 @@ export function filter<T>(
  */
 export function indexedPairs<T>(it: Iterable<T>): IterableCircular<[number, T]> {
   return {
-    *[Symbol.iterator](): IterableIterator<[number, T]> {
+    *[Symbol.iterator]() {
       let index = 0;
       for (const item of it) {
         yield [index++, item];
@@ -245,7 +245,7 @@ export function chunkify<T>(it: Iterable<T>, chunkSize: number): IterableCircula
   }
 
   return {
-    *[Symbol.iterator](): IterableIterator<T[]> {
+    *[Symbol.iterator]() {
       if (Array.isArray(it)) {
         for (let index = 0; index < it.length; index += chunkSize) {
           yield it.slice(index, index + chunkSize);
@@ -300,7 +300,7 @@ export function rememeber<T>(it: Iterable<T>): IterableCircular<T> {
   let done = false;
 
   return {
-    *[Symbol.iterator](): IterableIterator<T> {
+    *[Symbol.iterator]() {
       yield* history;
       while (!done) {
         const next = iterator.next();

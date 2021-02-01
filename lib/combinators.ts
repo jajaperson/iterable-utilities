@@ -29,7 +29,7 @@ export function pair<T, U>(
   it2: Iterable<U>,
 ): IterableCircular<[T, U]> {
   return {
-    *[Symbol.iterator](): IterableIterator<[T, U]> {
+    *[Symbol.iterator]() {
       const iterator1 = it1[Symbol.iterator]();
       const iterator2 = it2[Symbol.iterator]();
       while (true) {
@@ -77,7 +77,7 @@ export function concat<T, U = T>(
   ...tails: Array<Iterable<U>>
 ): IterableCircular<T | U> {
   return {
-    *[Symbol.iterator](): IterableIterator<T | U> {
+    *[Symbol.iterator]() {
       yield* head;
       for (const it of tails) {
         yield* it;
