@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [2.2.0] - 2021-02-01
+
 ### Added
 
 - An `IterableCircular` type for iterables using generator functions.
@@ -26,8 +28,8 @@ and this project adheres to
 
 - Export `LICENSE` from `version.ts` and `mod.ts`
 - Transformers
-  - `iter.remember()` so that an iterable can be iterated over multiple times and
-    be guaranteed to yield the same results.
+  - `iter.remember()` so that an iterable can be iterated over multiple times
+    and be guaranteed to yield the same results.
 - Examples to documentation.
 
 ## [2.0.0] - 2021-01-28
@@ -105,11 +107,11 @@ and this project adheres to
   - `iter.concat` (like `Array.prototype.concat`)
 
 [unreleased]:
-  https://github.com/jajaperson/iterable-utilities/compare/v2.1.0...HEAD
+  https://github.com/jajaperson/iterable-utilities/compare/v2.2.0...HEAD
 [0.2.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.2.0
 [0.1.1]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.1.1
 [0.1.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.1.0
 [1.0.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v1.0.0
 [2.0.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v2.0.0
 [2.1.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v2.1.0
-
+[2.2.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v2.2.0
