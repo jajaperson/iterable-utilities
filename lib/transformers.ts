@@ -203,7 +203,9 @@ export function filter<T>(
  * console.log(iterator.next().value); // -> [ 5, -6 ]
  * ```
  */
-export function indexedPairs<T>(it: Iterable<T>): IterableCircular<[number, T]> {
+export function indexedPairs<T>(
+  it: Iterable<T>,
+): IterableCircular<[number, T]> {
   return {
     *[Symbol.iterator]() {
       let index = 0;
@@ -229,15 +231,18 @@ export function indexedPairs<T>(it: Iterable<T>): IterableCircular<[number, T]> 
  * const chunks = iter.chunkify(naturals, 3);
  * const iterator = chunks[Symbol.iterator]();
  *
- * console.log(iterator.next().value); // -> [ 0, -1 ]
- * console.log(iterator.next().value); // -> [ 1, -2 ]
- * console.log(iterator.next().value); // -> [ 2, -3 ]
- * console.log(iterator.next().value); // -> [ 3, -4 ]
- * console.log(iterator.next().value); // -> [ 4, -5 ]
- * console.log(iterator.next().value); // -> [ 5, -6 ]
+ * console.log(iterator.next().value); // -> [ -1, -2, -3 ]
+ * console.log(iterator.next().value); // -> [ -4, -5, -6 ]
+ * console.log(iterator.next().value); // -> [ -7, -8, -9 ]
+ * console.log(iterator.next().value); // -> [ -10, -11, -12 ]
+ * console.log(iterator.next().value); // -> [ -13, -14, -15 ]
+ * console.log(iterator.next().value); // -> [ -16, -17, -18 ]
  * ```
  */
-export function chunkify<T>(it: Iterable<T>, chunkSize: number): IterableCircular<T[]> {
+export function chunkify<T>(
+  it: Iterable<T>,
+  chunkSize: number,
+): IterableCircular<T[]> {
   if (!(Number.isSafeInteger(chunkSize) && chunkSize > 0)) {
     throw new RangeError(
       `Expected \`chunkSize\` to be an integer from 1 and up, got \`${chunkSize}\``,
