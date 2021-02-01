@@ -1,3 +1,5 @@
+import { CurriedIterableMethod, IterableMethod } from "../types.ts";
+
 /**
  * Creates a function which always returns the same value.
  * @param value - The value to be returned
@@ -20,14 +22,6 @@ export function stripIterable<T>(it: Iterable<T>): Iterable<T> {
   return {
     [Symbol.iterator]: it[Symbol.iterator],
   };
-}
-
-interface IterableMethod<T, U, Args extends unknown[]> {
-  (it: Iterable<T>, ...args: Args): U;
-}
-
-interface CurriedIterableMethod<T, U, Args extends unknown[]> {
-  (...args: Args): (it: Iterable<T>) => U;
 }
 
 /**

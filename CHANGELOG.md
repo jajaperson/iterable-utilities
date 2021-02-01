@@ -8,6 +8,14 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Several types for `iter` methods.
+  - `IterableMethod`
+  - `UniaryIterableMethod`
+  - `CurriedIterableMethod`
+  - `UniaryIterableTransformer`
+
 ## [2.2.0] - 2021-02-01
 
 ### Added
