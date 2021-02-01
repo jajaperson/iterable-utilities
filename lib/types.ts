@@ -27,3 +27,11 @@ export interface IterablePredicateCallback<T> {
    */
   (value: T, index: number, it: Iterable<T>): boolean;
 }
+
+/**
+ * The same as the `Iterable` type, but the iterator implementation is iterable.
+ * @typeParam T - Type of items in the iterable.
+ */
+export interface IterableCircular<T> extends Iterable<T> {
+  [Symbol.iterator](): IterableIterator<T>;
+}

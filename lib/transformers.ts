@@ -1,4 +1,4 @@
-import { IterablePredicateCallback } from "./types.ts";
+import { IterableCircular, IterablePredicateCallback } from "./types.ts";
 
 /**
  * @link map | `map`} callback.
@@ -44,7 +44,7 @@ export interface MapCallback<T, U> {
 export function map<T, U = T>(
   it: Iterable<T>,
   f: MapCallback<T, U>,
-): Iterable<U> {
+): IterableCircular<U> {
   return {
     *[Symbol.iterator](): IterableIterator<U> {
       let index = 0;
@@ -78,7 +78,7 @@ export function map<T, U = T>(
  * // -> 6
  * ```
  */
-export function take<T>(it: Iterable<T>, n: number): Iterable<T> {
+export function take<T>(it: Iterable<T>, n: number): IterableCircular<T> {
   return {
     *[Symbol.iterator](): IterableIterator<T> {
       const iterator = it[Symbol.iterator]();
@@ -122,7 +122,7 @@ export function until<T>(
   it: Iterable<T>,
   f: IterablePredicateCallback<T>,
   includeLast = true,
-): Iterable<T> {
+): IterableCircular<T> {
   return {
     *[Symbol.iterator](): IterableIterator<T> {
       let index = 0;
@@ -168,7 +168,7 @@ export function until<T>(
 export function filter<T>(
   it: Iterable<T>,
   predicate: IterablePredicateCallback<T>,
-): Iterable<T> {
+): IterableCircular<T> {
   return {
     *[Symbol.iterator](): IterableIterator<T> {
       let index = 0;
@@ -203,7 +203,7 @@ export function filter<T>(
  * console.log(iterator.next().value); // -> [ 5, -6 ]
  * ```
  */
-export function indexedPairs<T>(it: Iterable<T>): Iterable<[number, T]> {
+export function indexedPairs<T>(it: Iterable<T>): IterableCircular<[number, T]> {
   return {
     *[Symbol.iterator](): IterableIterator<[number, T]> {
       let index = 0;
@@ -237,7 +237,7 @@ export function indexedPairs<T>(it: Iterable<T>): Iterable<[number, T]> {
  * console.log(iterator.next().value); // -> [ 5, -6 ]
  * ```
  */
-export function chunkify<T>(it: Iterable<T>, chunkSize: number): Iterable<T[]> {
+export function chunkify<T>(it: Iterable<T>, chunkSize: number): IterableCircular<T[]> {
   if (!(Number.isSafeInteger(chunkSize) && chunkSize > 0)) {
     throw new RangeError(
       `Expected \`chunkSize\` to be an integer from 1 and up, got \`${chunkSize}\``,
@@ -294,7 +294,7 @@ export function chunkify<T>(it: Iterable<T>, chunkSize: number): Iterable<T[]> {
  * console.log(iterator2.next().value); // ~> 0.30540840030529215
  * ```
  */
-export function rememeber<T>(it: Iterable<T>): Iterable<T> {
+export function rememeber<T>(it: Iterable<T>): IterableCircular<T> {
   const history = new Array<T>();
   const iterator = it[Symbol.iterator]();
   let done = false;

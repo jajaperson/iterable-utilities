@@ -1,3 +1,5 @@
+import { IterableCircular } from "./types.ts";
+
 /**
  * Creates a new iterable containing tuples of each element of `it1` and `it2`.
  * @param it1 - Iterable to be mapped to the first element of each tuple in the
@@ -25,7 +27,7 @@
 export function pair<T, U>(
   it1: Iterable<T>,
   it2: Iterable<U>,
-): Iterable<[T, U]> {
+): IterableCircular<[T, U]> {
   return {
     *[Symbol.iterator](): IterableIterator<[T, U]> {
       const iterator1 = it1[Symbol.iterator]();
@@ -73,7 +75,7 @@ export function pair<T, U>(
 export function concat<T, U = T>(
   head: Iterable<T>,
   ...tails: Array<Iterable<U>>
-): Iterable<T | U> {
+): IterableCircular<T | U> {
   return {
     *[Symbol.iterator](): IterableIterator<T | U> {
       yield* head;

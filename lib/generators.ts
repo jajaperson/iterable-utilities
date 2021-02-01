@@ -1,3 +1,4 @@
+import { IterableCircular } from "./types.ts";
 import { kComb } from "./internal/util.ts";
 
 /**
@@ -41,7 +42,7 @@ export interface FromCallback<T> {
  * // -> 6
  * ```
  */
-export function from<T>(f: FromCallback<T>): Iterable<T> {
+export function from<T>(f: FromCallback<T>): IterableCircular<T> {
   return {
     *[Symbol.iterator](): IterableIterator<T> {
       let index = 0;
@@ -90,7 +91,7 @@ export interface EndlessFromCallback<T> {
  * console.log(iterator.next().value); // -> 10
  * ```
  */
-export function endlessFrom<T>(f: EndlessFromCallback<T>): Iterable<T> {
+export function endlessFrom<T>(f: EndlessFromCallback<T>): IterableCircular<T> {
   return {
     *[Symbol.iterator](): IterableIterator<T> {
       let index = 0;
@@ -119,7 +120,7 @@ export function endlessFrom<T>(f: EndlessFromCallback<T>): Iterable<T> {
  * console.log(iterator.next().value); // ~> 0.5199689620612802
  * ```
  */
-export function randomNumbers(): Iterable<number> {
+export function randomNumbers(): IterableCircular<number> {
   return {
     *[Symbol.iterator](): IterableIterator<number> {
       yield* endlessFrom(Math.random);
@@ -146,7 +147,7 @@ export function randomNumbers(): Iterable<number> {
  * console.log(iterator.next().value); // -> 0
  * ```
  */
-export function constant<T>(value: T): Iterable<T> {
+export function constant<T>(value: T): IterableCircular<T> {
   return {
     *[Symbol.iterator](): IterableIterator<T> {
       yield* endlessFrom(kComb(value));
@@ -184,7 +185,7 @@ export function constant<T>(value: T): Iterable<T> {
  * console.log(oddsIterator.next().value); // -> 11
  * ```
  */
-export function increments(initial = 0, step = 1): Iterable<number> {
+export function increments(initial = 0, step = 1): IterableCircular<number> {
   return {
     *[Symbol.iterator](): IterableIterator<number> {
       yield* endlessFrom((index) => initial + index * step);

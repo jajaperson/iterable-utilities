@@ -8,6 +8,16 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- An `IterableCircular` type for iterables using generator functions.
+
+### Changed
+
+- Everything which used to return an `Iterable` now returns the
+  `IterableCircular` type. This doesn't break anything because these types are
+  compatible.
+
 ## [2.1.0] - 2021-01-30
 
 ### Added
