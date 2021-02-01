@@ -25,9 +25,6 @@ for (const num of iter.take(odds, 5)) {
 }
 ```
 
-These curried methods are also available in the main `mod.ts` through
-`iter.curried`.
-
 ### Functional programming
 
 An alternative module is provided for functional programming styles, with a
@@ -46,6 +43,9 @@ for (const num of iter.take(5)(odds)) {
   console.log(num);
 }
 ```
+
+These curried methods are also available in the main `mod.ts` through
+`iter.curried`.
 
 ## API
 
