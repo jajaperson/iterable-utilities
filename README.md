@@ -8,7 +8,7 @@ _lazily_, meaning you only compute what you need. The aim of this module is to
 provide lazy iterable alternatives to javascript's native array methods, as well
 as a few quality-of-life iterable utilities.
 
-## Installation
+## Usage
 
 The module is currently hosted on [deno.land/x/](https://deno.land/x/).
 
@@ -16,11 +16,40 @@ The module is currently hosted on [deno.land/x/](https://deno.land/x/).
 import * as iter from "https://deno.land/x/iter/mod.ts";
 // or with a version
 import * as iter from "https://deno.land/x/iter@v2.1.0/mod.ts";
+
+const naturals = iter.create.increments(1);
+const odds = iter.filter(naturals, (n) => n % 2 === 1);
+
+for (const num of iter.take(odds, 5)) {
+  console.log(num);
+}
+```
+
+These curried methods are also available in the main `mod.ts` through
+`iter.curried`.
+
+### Functional programming
+
+An alternative module is provided for functional programming styles, with a
+sensible level of currying.
+
+```ts
+import * as iter from "https://deno.land/x/iter/fp.ts";
+// or with a version
+import * as iter from "https://deno.land/x/iter@v2.1.0/fp.ts";
+
+const naturals = iter.create.increments(1);
+const filterOdds = iter.filter<number>((n) => n % 2 === 1);
+const odds = filterOdds(naturals);
+
+for (const num of iter.take(5)(odds)) {
+  console.log(num);
+}
 ```
 
 ## API
 
-API documentation can be found
+Full API documentation can be found
 [here](https://doc.deno.land/https/deno.land/x/iter/mod.ts)
 
 ## `Array.prototype` parity completeness

@@ -21,3 +21,26 @@ export function stripIterable<T>(it: Iterable<T>): Iterable<T> {
     [Symbol.iterator]: it[Symbol.iterator],
   };
 }
+
+interface IterableMethod<T, U, Args extends unknown[]> {
+  (it: Iterable<T>, ...args: Args): U;
+}
+
+interface CurriedIterableMethod<T, U, Args extends unknown[]> {
+  (...args: Args): (it: Iterable<T>) => U;
+}
+
+/**
+ * Curries a iterable method for partial calling.
+ * @param method - The method to curry.
+ * @typeParam T - The iterable's item type.
+ * @typeParam U - The functions return type.
+ * @typeParam Args - The other argument types for `method` as a tuple.
+ * @returns A curried `method`.
+ * @internal
+ */
+export function curryIterableMethod<T, U, Args extends unknown[]>(
+  method: IterableMethod<T, U, Args>,
+): CurriedIterableMethod<T, U, Args> {
+  return (...args) => (it) => method(it, ...args);
+}

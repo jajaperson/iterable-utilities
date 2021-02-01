@@ -11,6 +11,8 @@ and this project adheres to
 ### Added
 
 - An `IterableCircular` type for iterables using generator functions.
+- A alternative module with a sensible level of currying, `fp.ts`. This is also
+  exported as `curried` from the main `mod.ts`.
 
 ### Changed
 
@@ -26,7 +28,7 @@ and this project adheres to
 - Transformers
   - `iter.remember()` so that an iterable can be iterated over multiple times and
     be guaranteed to yield the same results.
-- Examples to documentation
+- Examples to documentation.
 
 ## [2.0.0] - 2021-01-28
 
