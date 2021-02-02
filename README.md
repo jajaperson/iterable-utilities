@@ -8,6 +8,12 @@ _lazily_, meaning you only compute what you need. The aim of this module is to
 provide lazy iterable alternatives to javascript's native array methods, as well
 as a few quality-of-life iterable utilities.
 
+This library opts for standalone functions rather than an extended iterable type
+for the sake of simplicity and being lightweight. If an extension of the
+iterable type which provides these features as methods is what you are after,
+see [IxJS](https://ghub.io/ix) (for Deno this can be imported via
+[jspm](https://jspm.io)).
+
 ## Usage
 
 The module is currently hosted on [deno.land/x/](https://deno.land/x/).
