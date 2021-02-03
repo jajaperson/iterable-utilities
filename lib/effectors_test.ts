@@ -4,7 +4,7 @@ import * as iter from "../mod.ts";
 Deno.test("forEach", () => {
   const naturalsTo5 = iter.take(iter.create.increments(1), 5);
   iter.forEach(naturalsTo5, (x, i, it) => {
-    assertEquals(x - i, 1)
-    assertEquals(it[Symbol.iterator]().next().value, 1)
+    assertEquals(x - i, 1);
+    assertEquals(it[Symbol.iterator]().next().value, 1);
   });
 });
