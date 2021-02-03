@@ -4,8 +4,10 @@ export * from "./lib/combiners.ts";
 export * from "./lib/reducers.ts";
 export * from "./lib/types.ts";
 export * as create from "./lib/generators.ts";
+
+import * as fp from "./fp.ts";
 /**
- * Curried methods. Note that only methods which take an iterable as a first
+ * Curried functions. Note that only functions which take an iterable as a first
  * argument, and accept more than one argument, are curried.
  */
-export * as curried from "./fp.ts";
+export const curried = fp;

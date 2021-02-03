@@ -50,15 +50,15 @@ for (const num of iter.take(5)(odds)) {
 }
 ```
 
-These curried methods are also available in the main `mod.ts` through
+These curried functions are also available in the main `mod.ts` through
 `iter.curried`.
 
 #### Chaining operations (composition)
 
-To chain multiple transformers together, partially applied curried transformer
-functions can be composed together. Generic composition functions are
-notoriously difficult to implement in TypeScript, there are a few modules which
-provide solutions.
+To chain multiple operations together, partially applied curried iter functions
+can be composed together. Generic composition functions are notoriously
+difficult to implement in TypeScript, there are a few modules which provide
+solutions.
 
 If you can deal with a slightly alien curried syntax,
 [`copb`](https://github.com/jajaperson/copb) allows for type-safe currying of an
@@ -85,15 +85,13 @@ pipeline(iter.create.randomNumbers());
 // ~> 661299633996843372696936915845169485496993302427362472690
 ```
 
-(`~>` means possible output)
-
 <!-- prettier-ignore-end -->
 
 If that isn't your thing,
 [`composer`](https://github.com/KSXGitHub/deno-compose) achieves a similar thing
-in the familar JavaScript syntax by providing 50 overloads. This does limit the
-number of functions which can be chained together, but if you reach that point
-you should probably be breaking your code into smaller functions anyway.
+in the familar JavaScript syntax by providing 50 type overloads. This does limit
+the number of functions which can be composed in one go, but if you reach that
+point you should probably be breaking your code into smaller functions anyway.
 
 ## API
 

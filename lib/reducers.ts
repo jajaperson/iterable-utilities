@@ -102,10 +102,10 @@ export function reduce<T, U>(
  * in an iterable.
  *
  * :warning: When ran on an endless iterable for which `predicate` never returns
- * true, this method will never return.
+ * true, this functions will never return.
  * @param it - The iterable to be tested.
  * @param {IterablePredicateCallback} predicate A function that accepts up to
- * three arguments. The some method calls the predicate function for each
+ * three arguments. The some function calls the predicate function for each
  * element in the array until the predicate returns a value
  * @typeParam T - The type of items in `it`.
  * @returns Whether any of the items in `it` predicate true.
@@ -140,7 +140,7 @@ export function some<T>(
  * false as appropriate.
  *
  * :warning: When ran on an endless iterable which does not contain `value`,
- * this method never returns.
+ * this function never returns.
  * @param it - The iterable to be tested.
  * @param value - The item to search for.
  * @typeParam T - The type of items in `it`.
@@ -170,10 +170,10 @@ export function includes<T>(it: Iterable<T>, value: T): boolean {
  * in an iterable.
  *
  * :warning: When ran on an endless iterable for which `predicate` never returns
- * false, this method will never return.
+ * false, this function will never return.
  * @param it - The iterable to be tested.
  * @param {IterablePredicateCallback} predicate A function that accepts up to
- * three arguments. The some method calls the predicate function for each
+ * three arguments. The some function calls the predicate function for each
  * element in the array until the predicate returns a value
  * @typeParam T - The type of items in `it`.
  * @returns Whether any of the items in `it` predicate true.

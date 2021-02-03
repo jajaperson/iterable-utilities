@@ -37,10 +37,10 @@ export interface IterableCircular<T> extends Iterable<T> {
 }
 
 /**
- * Type for all iterable methods in the library.
+ * Type for all iterable function in the library.
  * @typeParam T - The type of items in the iterable argument.
- * @typeParam U - The return type of the method.
- * @typeParam Args - The rest type of other method arguments.
+ * @typeParam U - The return type of the function.
+ * @typeParam Args - The rest type of other function arguments.
  */
 export interface IterableMethod<T, U, Args extends unknown[]> {
   (it: Iterable<T>, ...args: Args): U;
@@ -49,16 +49,16 @@ export interface IterableMethod<T, U, Args extends unknown[]> {
 /**
  * Alias for an `IterableMethod` which accepts no arguments accept an iterable.
  * @typeParam T - The type of items in the iterable argument.
- * @typeParam U - The return type of the method.
+ * @typeParam U - The return type of the function.
  */
 export type UniaryIterableMethod<T, U> = IterableMethod<T, U, []>;
 
 /**
- * A curried version of an `IterableMethod`. All methods in `fp.ts` are either
+ * A curried version of an `IterableMethod`. All function in `fp.ts` are either
  * of type `CurriedIterableMethod` or `UniaryIterableMethod`.
  * @typeParam T - The type of items in the iterable argument.
- * @typeParam U - The return type of the method.
- * @typeParam Args - The rest type of other method arguments.
+ * @typeParam U - The return type of the function.
+ * @typeParam Args - The rest type of other function arguments.
  */
 export interface CurriedIterableMethod<T, U, Args extends unknown[]> {
   (...args: Args): UniaryIterableMethod<T, U>;

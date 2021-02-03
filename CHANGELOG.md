@@ -15,6 +15,12 @@ and this project adheres to
   - `UniaryIterableMethod`
   - `CurriedIterableMethod`
   - `UniaryIterableTransformer`
+- Documentation on chaining/composition.
+
+### Changed
+
+- All documentation which previously referred to the functions of this library
+  as methods now says function.
 
 ## [2.2.0] - 2021-02-01
 

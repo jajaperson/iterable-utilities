@@ -22,7 +22,7 @@ export interface MapCallback<T, U> {
  * returns a new iterable of the results.
  * @param it - The iterable being mapped.
  * @param {MapCallback} f - A function that accepts up to three arguments. The
- * map method calls `f` function one time for each item in the iterable.
+ * map function calls `f` function one time for each item in the iterable.
  * @typeParam T - Type of items in `it`.
  * @typeParam U - Return type of `f`.
  * @returns An iterable of `f` applied to items of `it`.
@@ -92,7 +92,7 @@ export function take<T>(it: Iterable<T>, n: number): IterableCircular<T> {
  * true.
  * @param it - The iterable being cut.
  * @param {IterablePredicateCallback} f - A function that accepts up to three
- * arguments. The cut method calls `f` one time for each item in the iterable.
+ * arguments. The cut function calls `f` one time for each item in the iterable.
  * @param includeLast - Whether the item for which `f` returns true should be
  * included.
  * @typeParam T - The type of items in both `it` and the returned iterable.
@@ -145,7 +145,7 @@ export function until<T>(
  * callback function.
  * @param it - The iterable being filtered
  * @param {IterablePredicateCallback} predicate - A function that accepts up to
- * three arguments. The filter method calls the predicate function one time for
+ * three arguments. The filter function calls the predicate function one time for
  * each item in the iterable.
  * @typeParam T - The type of items in `it`.
  * @returns A new iterable
