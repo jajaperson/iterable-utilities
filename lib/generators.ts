@@ -121,11 +121,7 @@ export function endlessFrom<T>(f: EndlessFromCallback<T>): IterableCircular<T> {
  * ```
  */
 export function randomNumbers(): IterableCircular<number> {
-  return {
-    *[Symbol.iterator]() {
-      yield* endlessFrom(Math.random);
-    },
-  };
+  return endlessFrom(Math.random);
 }
 
 /**
@@ -148,11 +144,7 @@ export function randomNumbers(): IterableCircular<number> {
  * ```
  */
 export function constant<T>(value: T): IterableCircular<T> {
-  return {
-    *[Symbol.iterator]() {
-      yield* endlessFrom(kComb(value));
-    },
-  };
+  return endlessFrom(kComb(value));
 }
 
 /**
@@ -186,9 +178,5 @@ export function constant<T>(value: T): IterableCircular<T> {
  * ```
  */
 export function increments(initial = 0, step = 1): IterableCircular<number> {
-  return {
-    *[Symbol.iterator]() {
-      yield* endlessFrom((index) => initial + index * step);
-    },
-  };
+  return endlessFrom((index) => initial + index * step);
 }
