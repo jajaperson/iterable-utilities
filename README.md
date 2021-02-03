@@ -88,8 +88,8 @@ pipeline(iter.create.randomNumbers());
 <!-- prettier-ignore-end -->
 
 If that isn't your thing,
-[`composer`](https://github.com/KSXGitHub/deno-compose) achieves a similar thing
-in the familar JavaScript syntax by providing 50 type overloads. This does limit
+[`compose`](https://github.com/KSXGitHub/deno-compose) achieves a similar thing
+in the familar JavaScript syntax by providing 64 type overloads. This does limit
 the number of functions which can be composed in one go, but if you reach that
 point you should probably be breaking your code into smaller functions anyway.
 
