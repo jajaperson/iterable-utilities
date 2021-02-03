@@ -23,8 +23,8 @@ Deno.test("stripIterable", () => {
   }
 });
 
-Deno.test("curryIterableMethod", () => {
-  const curriedTake = util.curryIterableMethod(take);
+Deno.test("curryIterFunction", () => {
+  const curriedTake = util.curryIterFunction(take);
   const take5 = curriedTake(5);
 
   assertEquals(typeof take5, "function");

@@ -1,4 +1,4 @@
-import { CurriedIterableMethod, IterableMethod } from "../types.ts";
+import { CurriedIterFunction, IterFunction } from "../types.ts";
 
 /**
  * Creates a function which always returns the same value.
@@ -28,13 +28,13 @@ export function stripIterable<T>(it: Iterable<T>): Iterable<T> {
  * Curries a iter function for partial application.
  * @param function - The function to curry.
  * @typeParam T - The iterable's item type.
- * @typeParam U - The functions return type.
+ * @typeParam U - The function's return type.
  * @typeParam Args - The other argument types for `function` as a tuple.
  * @returns A curried `function`.
  * @internal
  */
-export function curryIterableMethod<T, U, Args extends unknown[]>(
-  method: IterableMethod<T, U, Args>,
-): CurriedIterableMethod<T, U, Args> {
-  return (...args) => (it) => method(it, ...args);
+export function curryIterFunction<T, U, Args extends unknown[]>(
+  f: IterFunction<T, U, Args>,
+): CurriedIterFunction<T, U, Args> {
+  return (...args) => (it) => f(it, ...args);
 }

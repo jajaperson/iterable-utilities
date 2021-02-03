@@ -1,26 +1,26 @@
-import { curryIterableMethod } from "./lib/internal/util.ts";
+import { curryIterFunction } from "./lib/internal/util.ts";
 import * as combinators from "./lib/combiners.ts";
 import * as reducers from "./lib/reducers.ts";
 import * as transformers from "./lib/transformers.ts";
 
 // Combinators
-export const pair = curryIterableMethod(combinators.pair);
-export const concat = curryIterableMethod(combinators.concat);
+export const pair = curryIterFunction(combinators.pair);
+export const concat = curryIterFunction(combinators.concat);
 
 // Reducers
-export const reduce = curryIterableMethod(reducers.reduce);
-export const some = curryIterableMethod(reducers.some);
-export const includes = curryIterableMethod(reducers.includes);
-export const every = curryIterableMethod(reducers.every);
-export const find = curryIterableMethod(reducers.find);
+export const reduce = curryIterFunction(reducers.reduce);
+export const some = curryIterFunction(reducers.some);
+export const includes = curryIterFunction(reducers.includes);
+export const every = curryIterFunction(reducers.every);
+export const find = curryIterFunction(reducers.find);
 
 // Transformers
-export const map = curryIterableMethod(transformers.map);
-export const take = curryIterableMethod(transformers.take);
-export const until = curryIterableMethod(transformers.until);
-export const filter = curryIterableMethod(transformers.filter);
+export const map = curryIterFunction(transformers.map);
+export const take = curryIterFunction(transformers.take);
+export const until = curryIterFunction(transformers.until);
+export const filter = curryIterFunction(transformers.filter);
 export const indexedPairs = transformers.indexedPairs;
-export const chunkify = curryIterableMethod(transformers.chunkify);
+export const chunkify = curryIterFunction(transformers.chunkify);
 export const remember = transformers.rememeber;
 
 export * as create from "./lib/generators.ts";

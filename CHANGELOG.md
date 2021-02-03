@@ -10,11 +10,11 @@ and this project adheres to
 
 ### Added
 
-- Several types for `iter` methods.
-  - `IterableMethod`
-  - `UniaryIterableMethod`
-  - `CurriedIterableMethod`
-  - `UniaryIterableTransformer`
+- Several types for `iter` functions.
+  - `IterFunction`
+  - `UniaryIterFunction`
+  - `CurriedIterFunction`
+  - `UniaryIterTransformer`
 - Documentation on chaining/composition.
 
 ### Changed

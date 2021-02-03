@@ -37,40 +37,40 @@ export interface IterableCircular<T> extends Iterable<T> {
 }
 
 /**
- * Type for all iterable function in the library.
+ * Type for all iterable functions in the library.
  * @typeParam T - The type of items in the iterable argument.
  * @typeParam U - The return type of the function.
  * @typeParam Args - The rest type of other function arguments.
  */
-export interface IterableMethod<T, U, Args extends unknown[]> {
+export interface IterFunction<T, U, Args extends unknown[]> {
   (it: Iterable<T>, ...args: Args): U;
 }
 
 /**
- * Alias for an `IterableMethod` which accepts no arguments accept an iterable.
+ * Alias for an `IterFunction` which accepts no arguments accept an iterable.
  * @typeParam T - The type of items in the iterable argument.
  * @typeParam U - The return type of the function.
  */
-export type UniaryIterableMethod<T, U> = IterableMethod<T, U, []>;
+export type UniaryIterFunction<T, U> = IterFunction<T, U, []>;
 
 /**
- * A curried version of an `IterableMethod`. All function in `fp.ts` are either
- * of type `CurriedIterableMethod` or `UniaryIterableMethod`.
+ * A curried version of an `IterFunction`. All non-generator functions in
+ * `fp.ts` are either of type `IterFunction` or `UniaryIterFunction`.
  * @typeParam T - The type of items in the iterable argument.
  * @typeParam U - The return type of the function.
  * @typeParam Args - The rest type of other function arguments.
  */
-export interface CurriedIterableMethod<T, U, Args extends unknown[]> {
-  (...args: Args): UniaryIterableMethod<T, U>;
+export interface CurriedIterFunction<T, U, Args extends unknown[]> {
+  (...args: Args): UniaryIterFunction<T, U>;
 }
 
 /**
- * An alias for a special case of `UniaryIterableMethod` for when the result is
+ * An alias for a special case of `UniaryIterTransformer` for when the result is
  * an iterable.
  * @typeParam T - The type of items in the iterable argument.
  * @typeParam U - The type of items in the returned iterable.
  */
-export type UniaryIterableTransformer<T, U> = UniaryIterableMethod<
+export type UniaryIterTransformer<T, U> = UniaryIterFunction<
   T,
   Iterable<U>
 >;
