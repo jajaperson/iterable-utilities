@@ -53,6 +53,48 @@ for (const num of iter.take(5)(odds)) {
 These curried methods are also available in the main `mod.ts` through
 `iter.curried`.
 
+#### Chaining operations (composition)
+
+To chain multiple transformers together, partially applied curried transformer
+functions can be composed together. Generic composition functions are
+notoriously difficult to implement in TypeScript, there are a few modules which
+provide solutions.
+
+If you can deal with a slightly alien curried syntax,
+[`copb`](https://github.com/jajaperson/copb) allows for type-safe currying of an
+unlimited number of functions.
+
+<!-- prettier-ignore-start -->
+
+```ts
+import * as iter from "https://deno.land/x/iter/fp.ts";
+import { c, p } from "https://deno.land/x/copb/mod.ts";
+
+const pipeline = c(
+  p(iter.map<number>(x => x * 100)) // Only needed type annotation, the rest is inferred.
+   (iter.map(Math.floor))
+   (iter.filter(x => x % 3 === 0))
+   (iter.take(30))
+   (iter.reduce(
+     (str, x) => str += x, ""
+   ))
+   (console.log)
+);
+
+pipeline(iter.create.randomNumbers());
+// ~> 661299633996843372696936915845169485496993302427362472690
+```
+
+(`~>` means possible output)
+
+<!-- prettier-ignore-end -->
+
+If that isn't your thing,
+[`composer`](https://github.com/KSXGitHub/deno-compose) achieves a similar thing
+in the familar JavaScript syntax by providing 50 overloads. This does limit the
+number of functions which can be chained together, but if you reach that point
+you should probably be breaking your code into smaller functions anyway.
+
 ## API
 
 Full API documentation can be found
@@ -92,3 +134,15 @@ Full API documentation can be found
 - [ ] `toLocaleString`
 - [ ] `toString`
 - [ ] `unshift`
+
+## Internal nomenclature
+
+The functions are organised into the following categories. Note that when
+importing from `mod.ts`, all are included in the same namespace except for
+`generators`, which is exported under `create`.
+
+- `generators` create new iterables from non-iterable arguments (or none at
+  all).
+- `transformers` transform one iterable to another.
+- `combiners` transform multiple iterables to a single iterable.
+- `reducers` reduce an iterable into a single, non-iterabe value.
