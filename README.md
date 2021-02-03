@@ -110,14 +110,14 @@ Full API documentation can be found
 - [x] `map`
 - [x] `reduce`
 - [x] `some`
+- [x] `forEach`
+- [ ] `flat`
+- [ ] `flatMap`
 
 ### Currently not being considered
 
 - [ ] `copyWithin`
 - [ ] `fill`
-- [ ] `flat`
-- [ ] `flatMap`
-- [ ] `forEach`
 - [ ] `indexOf`
 - [ ] `join`
 - [ ] `lastIndexOf`
@@ -144,3 +144,4 @@ importing from `mod.ts`, all are included in the same namespace except for
 - `transformers` transform one iterable to another.
 - `combiners` transform multiple iterables to a single iterable.
 - `reducers` reduce an iterable into a single, non-iterabe value.
+- `effectors` iterate over an iterable and return void.

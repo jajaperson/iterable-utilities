@@ -2,6 +2,7 @@ import { curryIterFunction } from "./lib/internal/util.ts";
 import * as combinators from "./lib/combiners.ts";
 import * as reducers from "./lib/reducers.ts";
 import * as transformers from "./lib/transformers.ts";
+import * as effectors from "./lib/effectors.ts";
 
 // Combinators
 export const pair = curryIterFunction(combinators.pair);
@@ -22,5 +23,8 @@ export const filter = curryIterFunction(transformers.filter);
 export const indexedPairs = transformers.indexedPairs;
 export const chunkify = curryIterFunction(transformers.chunkify);
 export const remember = transformers.rememeber;
+
+// Effectors
+export const forEach = curryIterFunction(effectors.forEach);
 
 export * as create from "./lib/generators.ts";

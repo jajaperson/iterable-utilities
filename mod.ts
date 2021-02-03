@@ -3,6 +3,7 @@ export * from "./lib/transformers.ts";
 export * from "./lib/combiners.ts";
 export * from "./lib/reducers.ts";
 export * from "./lib/types.ts";
+export * from "./lib/effectors.ts";
 export * as create from "./lib/generators.ts";
 
 import * as fp from "./fp.ts";

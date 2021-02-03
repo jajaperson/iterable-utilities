@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Effectors
+  - `iter.forEach()` (like `Array.prototype.forEach`)
+
 ## [2.2.1] - 2021-02-03
 
 ### Added
