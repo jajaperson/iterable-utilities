@@ -180,3 +180,53 @@ export function constant<T>(value: T): IterableCircular<T> {
 export function increments(initial = 0, step = 1): IterableCircular<number> {
   return endlessFrom((index) => initial + index * step);
 }
+
+/**
+ * Creates an iterable over an inclusive range of numbers.
+ * @param endOrStart - If no other arguments are provided, the range will go
+ * from 0 until `endOrRangeStart`. Otherwise, this acts as the start of the
+ * range.
+ * @param end - The end of the range.
+ * @param step - The amount to increment each time. Sign is ignored.
+ * @returns An iterable over the range.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const range1 = iter.create.range(5);
+ * console.log(...range1); // -> 0 1 2 3 4 5
+ *
+ * const range2 = iter.create.range(11,16);
+ * console.log(...range2); // -> 11 12 13 14 15 16
+ *
+ * const range3 = iter.create.range(14,24,2);
+ * console.log(...range3); // -> 14 16 18 20 22 24
+ *
+ * const range4 = iter.create.range(12, 2, 2);
+ * console.log(...range4); // -> 12 10 8 6 4 2
+ * ```
+ */
+export function range(
+  endOrStart: number,
+  end?: number,
+  step = 1,
+): IterableCircular<number> {
+  const start = end ? endOrStart : 0;
+  const newEnd = end ? end : endOrStart;
+
+  step = Math.abs(step);
+  const upwards = newEnd > start;
+  if (!upwards) {
+    step *= -1;
+  }
+
+  const shouldStop = (i: number) => upwards ? i <= newEnd : i >= newEnd;
+
+  return {
+    *[Symbol.iterator]() {
+      for (let i = start; shouldStop(i); i += step) {
+        yield i;
+      }
+    },
+  };
+}

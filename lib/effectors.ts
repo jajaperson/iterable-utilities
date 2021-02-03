@@ -1,3 +1,5 @@
+import { IterableCircular } from "./types.ts";
+
 /**
  * @link forEach | `forEach`} callback.
  * @typeParam T - See {@link forEach}
@@ -16,10 +18,9 @@ export interface ForEachCallback<T> {
 /**
  * Performs the specified action for each item in an iterable. Non-lazy.
  * @param it - The iterable being looped over.
- * @param {ForEachCallback} f - A function that accepts up to three arguments. forEach
- * calls the callbackfn function one time for each item in the iterable.
+ * @param {ForEachCallback} f - A function that accepts up to three arguments.
+ * `forEach` calls `f` one time for each item in the iterable.
  * @typeParam T - The type of items in `it`.
- *
  * @example
  * ```ts
  * import * as iter from "https://deno.land/x/iter/mod.ts";
@@ -39,4 +40,45 @@ export interface ForEachCallback<T> {
 export function forEach<T>(it: Iterable<T>, f: ForEachCallback<T>): void {
   let index = 0;
   for (const item of it) f(item, index++, it);
+}
+
+/**
+ * Performs the specified action for each item in an iterable when the returned
+ * iterable is iterated over. Like {@link forEach | `forEach`} but lazy.
+ *
+ * Can be used to observe items of an iterable as they are released.
+ * @param it - The iterable being observed.
+ * @param f - A function that accepts up to three arguments. `forEach` calls `f`
+ * one time for each item in the iterable.
+ * @typeParam T - The type of items in `it`.
+ * @returns - The observed version of `it`.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const naturals = iter.create.increments(1);
+ * const observed = iter.lazyObserver(naturals, (x) => console.log(x));
+ * const iterator = observed[Symbol.iterator]();
+ *
+ * iterator.next();
+ * // -> 1
+ * iterator.next();
+ * // -> 2
+ * iterator.next();
+ * // -> 3
+ * ```
+ */
+export function lazyObserver<T>(
+  it: Iterable<T>,
+  f: ForEachCallback<T>,
+): IterableCircular<T> {
+  return {
+    *[Symbol.iterator]() {
+      let index = 0;
+      for (const item of it) {
+        f(item, index++, it);
+        yield item;
+      }
+    },
+  };
 }

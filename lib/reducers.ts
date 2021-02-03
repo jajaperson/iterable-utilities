@@ -282,3 +282,70 @@ export function findIndex<T>(
   }
   return -1;
 }
+
+/**
+ * Finds the sum of all items in `it`.
+ *
+ * :warning: When ran on an endless iterable, this never returns.
+ * @param it - The iterable to sum.
+ * @returns The sum of all items in `it`.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter";
+ *
+ * const myRange = iter.create.range(1, 100);
+ * console.log(iter.sum(myRange)); // -> 5050
+ * ```
+ */
+export function sum(it: Iterable<number>): number {
+  return reduce(it, (acc, n) => acc += n, 0, (acc) => isNaN(acc));
+}
+
+/**
+ * Finds the product of all items in `it`.
+ *
+ * :warning: When ran on an endless iterable without any zeros, this never
+ * returns.
+ * @param it - The iterable to sum.
+ * @returns The product of all items in `it`.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter";
+ *
+ * const myRange = iter.create.range(1, 10);
+ * console.log(iter.product(myRange)); // -> 3628800
+ *
+ * // Demonstrating laziness
+ * const rangeWithZero = iter.create.range(-1, 10);
+ * const observerdIter = iter.lazyObserver(
+ *   rangeWithZero,
+ *   (x) => console.log("Processed: " + x),
+ * );
+ * // -> Processed: -1
+ * // -> Processed: 0
+ * console.log(iter.product(observerdIter)); // -> -0
+ * ```
+ */
+export function product(it: Iterable<number>): number {
+  return reduce(it, (acc, n) => acc *= n, 1, (acc) => acc === 0 || isNaN(acc));
+}
+
+/**
+ * Finds the norm of `it` (distance from the origin).
+ *
+ * :warning: When ran on an endless iterable, this never returns.
+ * @param it - The iterable to sum.
+ * @returns The norm of `it`.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter";
+ *
+ * const pythagoreadQuad = [12, 16, 21];
+ * console.log(iter.norm(pythagoreadQuad)); // -> 29
+ * ```
+ */
+export function norm(it: Iterable<number>): number {
+  return Math.sqrt(
+    reduce(it, (acc, n) => acc += n ** 2, 0, (acc) => isNaN(acc)),
+  );
+}

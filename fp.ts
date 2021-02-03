@@ -14,6 +14,9 @@ export const some = curryIterFunction(reducers.some);
 export const includes = curryIterFunction(reducers.includes);
 export const every = curryIterFunction(reducers.every);
 export const find = curryIterFunction(reducers.find);
+export const sum = reducers.sum;
+export const product = reducers.product;
+export const norm = reducers.norm;
 
 // Transformers
 export const map = curryIterFunction(transformers.map);
@@ -26,5 +29,6 @@ export const remember = transformers.rememeber;
 
 // Effectors
 export const forEach = curryIterFunction(effectors.forEach);
+export const lazyObserver = curryIterFunction(effectors.lazyObserver);
 
 export * as create from "./lib/generators.ts";

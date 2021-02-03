@@ -12,6 +12,13 @@ and this project adheres to
 
 - Effectors
   - `iter.forEach()` (like `Array.prototype.forEach`)
+  - `iter.lazyObserver()` for observing each yielded value lazily.
+- Generators
+  - `iter.create.range()` for creating an iterable over a range of numbers.
+- Reducers
+  - `iter.sum()` for getting the sum of an iterable.
+  - `iter.product()` for getting the product of an iterable.
+  - `iter.norm()` for getting the vector norm of an iterable.
 
 ## [2.2.1] - 2021-02-03
 

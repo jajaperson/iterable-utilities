@@ -3,6 +3,7 @@ import {
   assertEquals,
 } from "https://deno.land/std@0.84.0/testing/asserts.ts";
 import * as generators from "./generators.ts";
+import { sum } from "./reducers.ts";
 
 Deno.test("randomNumbers", () => {
   const randomNumbers = generators.randomNumbers()[Symbol.iterator]();
@@ -57,4 +58,10 @@ Deno.test("increments", () => {
   for (let i = 0; i < 100; i += 5) {
     assertEquals(numberIterTimes5.next().value, i);
   }
+});
+
+Deno.test("range", () => {
+  assertEquals(sum(generators.range(5)), 15);
+  assertEquals(sum(generators.range(5, 9)), 35);
+  assertEquals(sum(generators.range(5, 10, 2)), 21);
 });

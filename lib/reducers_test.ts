@@ -1,8 +1,7 @@
-import {
-  assert,
-  assertEquals,
-} from "https://deno.land/std@0.84.0/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std@0.84.0/testing/asserts.ts";
 import * as reducers from "./reducers.ts";
+import { concat } from "./combiners.ts";
+import { increments, range } from "./generators.ts";
 
 Deno.test("reduce", () => {
   const add = (x: number, y: number) => x + y;
@@ -105,4 +104,20 @@ Deno.test("includes", () => {
   const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   assertEquals(reducers.includes(numbers, 69), false);
   assertEquals(reducers.includes(numbers, 5), true);
+});
+
+Deno.test("sum", () => {
+  assertEquals(reducers.sum([0, 3, 2, 4, -2, 5, 1, -3]), 10);
+});
+
+Deno.test("product", () => {
+  assertEquals(reducers.product(range(1, 9)), 362880);
+
+  const determinableEndless = concat(range(100), [0], increments());
+  assertEquals(reducers.product(determinableEndless), 0);
+});
+
+Deno.test("norm", () => {
+  const pyQuad = [12, 16, 21];
+  assertEquals(reducers.norm(pyQuad), 29);
 });
