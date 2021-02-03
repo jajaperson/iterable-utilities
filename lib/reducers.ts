@@ -136,36 +136,6 @@ export function some<T>(
 }
 
 /**
- * Determines whether an iterable includes a certain element, returning true or
- * false as appropriate.
- *
- * :warning: When ran on an endless iterable which does not contain `value`,
- * this function never returns.
- * @param it - The iterable to be tested.
- * @param value - The item to search for.
- * @typeParam T - The type of items in `it`.
- * @returns Whether `value` is in `it`.
- * @example
- * ```ts
- * import * as iter from "https://deno.land/x/iter";
- *
- * const naturals = iter.create.increments(1);
- * const has100 = iter.includes(naturals, 100);
- *
- * console.log(has100); // -> true
- *
- * // Will never return.
- * // const has0 = iter.includes(naturals, 0);
- * ```
- */
-export function includes<T>(it: Iterable<T>, value: T): boolean {
-  for (const item of it) {
-    if (item === value) return true;
-  }
-  return false;
-}
-
-/**
  * Determines whether the specified callback function returns true for all items
  * in an iterable.
  *
@@ -201,6 +171,36 @@ export function every<T>(
     true,
     (acc) => !acc,
   );
+}
+
+/**
+ * Determines whether an iterable includes a certain element, returning true or
+ * false as appropriate.
+ *
+ * :warning: When ran on an endless iterable which does not contain `value`,
+ * this function never returns.
+ * @param it - The iterable to be tested.
+ * @param value - The item to search for.
+ * @typeParam T - The type of items in `it`.
+ * @returns Whether `value` is in `it`.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter";
+ *
+ * const naturals = iter.create.increments(1);
+ * const has100 = iter.includes(naturals, 100);
+ *
+ * console.log(has100); // -> true
+ *
+ * // Will never return.
+ * // const has0 = iter.includes(naturals, 0);
+ * ```
+ */
+export function includes<T>(it: Iterable<T>, value: T): boolean {
+  for (const item of it) {
+    if (item === value) return true;
+  }
+  return false;
 }
 
 /**
