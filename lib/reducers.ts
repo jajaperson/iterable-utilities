@@ -298,7 +298,7 @@ export function findIndex<T>(
  * ```
  */
 export function sum(it: Iterable<number>): number {
-  return reduce(it, (acc, n) => acc += n, 0, (acc) => isNaN(acc));
+  return reduce(it, (acc, n) => acc + n, 0, (acc) => isNaN(acc));
 }
 
 /**
@@ -327,7 +327,7 @@ export function sum(it: Iterable<number>): number {
  * ```
  */
 export function product(it: Iterable<number>): number {
-  return reduce(it, (acc, n) => acc *= n, 1, (acc) => acc === 0 || isNaN(acc));
+  return reduce(it, (acc, n) => acc * n, 1, (acc) => acc === 0 || isNaN(acc));
 }
 
 /**
@@ -346,6 +346,6 @@ export function product(it: Iterable<number>): number {
  */
 export function norm(it: Iterable<number>): number {
   return Math.sqrt(
-    reduce(it, (acc, n) => acc += n ** 2, 0, (acc) => isNaN(acc)),
+    reduce(it, (acc, n) => acc + n ** 2, 0, (acc) => isNaN(acc)),
   );
 }
