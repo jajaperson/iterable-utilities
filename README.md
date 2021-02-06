@@ -76,7 +76,7 @@ const pipeline = c(
    (iter.filter(x => x % 3 === 0))
    (iter.take(30))
    (iter.reduce(
-     (str, x) => str += x, ""
+     (str, x) => str + x, ""
    ))
    (console.log)
 );
