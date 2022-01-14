@@ -183,7 +183,8 @@ export function filter<T>(
 
 /**
  * Converts an iterable into a series of pairs of indices and values. Similar to
- * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/entries | `Array.prototype.entries`}.
+ * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/entries | `Array.prototype.entries`}
+ * or rust's `iter.enumerate()`.
  * @param it - The iterable being indexed.
  * @typeParam T - The type of items in `it`.
  * @returns An iterable over pairs of indices and the items in `it`.
