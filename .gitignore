@@ -3,6 +3,7 @@
 
 # Editor
 .vscode
+.vim
 
 # Playground
 playground.ts
