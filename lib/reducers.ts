@@ -215,17 +215,17 @@ export function includes<T>(it: Iterable<T>, value: T): boolean {
  * @returns The first item which satisfied `predicate`.
  * @example
  * ```ts
-  * import * as iter from "https://deno.land/x/iter";
-  *
-  * const naturals = iter.create.increments(1);
-  * // Find a solution to 20n = 2n² - 6n, n ∈ ℕ
-  * const solution1 = iter.find(naturals, (n) => 20 * n === 2 * n ** 2 - 6 * n);
-  *
-  * console.log(solution1); // -> 13
-  *
-  * // Will never return.
-  * // Find a solution to n³ = 3n, n ∈ ℕ
-  * // const solution2 = iter.find(naturals, (n) => n ** 3 === 3 * n);
+ * import * as iter from "https://deno.land/x/iter";
+ *
+ * const naturals = iter.create.increments(1);
+ * // Find a solution to 20n = 2n² - 6n, n ∈ ℕ
+ * const solution1 = iter.find(naturals, (n) => 20 * n === 2 * n ** 2 - 6 * n);
+ *
+ * console.log(solution1); // -> 13
+ *
+ * // Will never return.
+ * // Find a solution to n³ = 3n, n ∈ ℕ
+ * // const solution2 = iter.find(naturals, (n) => n ** 3 === 3 * n);
  */
 export function find<T>(
   it: Iterable<T>,
