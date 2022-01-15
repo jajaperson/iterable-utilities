@@ -13,6 +13,8 @@ and this project adheres to
 - Transformers
   - `iter.flat()` (like `Array.prototype.flat`)
   - `iter.completeFlat()` for flattening an iterable completely.
+- Generators
+  - `iter.create.fromResults()` for creating iterators directly from results
 
 ## [2.3.0] - 2021-02-03
 

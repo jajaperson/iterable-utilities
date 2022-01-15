@@ -65,3 +65,27 @@ Deno.test("range", () => {
   assertEquals(sum(generators.range(5, 9)), 35);
   assertEquals(sum(generators.range(5, 10, 2)), 21);
 });
+
+Deno.test("fromResults", () => {
+  const results = [
+    { value: 0, done: false },
+    { value: 1, done: false },
+    { value: 2, done: false },
+    { value: 3, done: true },
+  ];
+  const iter1 = generators.fromResults(results)[Symbol.iterator]();
+  const iter2 = function* () {
+    yield 0;
+    yield 1;
+    yield 2;
+    return 3;
+  }();
+
+  let done = false;
+  while (!done) {
+    const r1 = iter1.next();
+    const r2 = iter2.next();
+    assertEquals(r1, r2);
+    done = r1.done || false;
+  }
+});

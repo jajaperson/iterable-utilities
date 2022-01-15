@@ -103,6 +103,58 @@ export function endlessFrom<T>(f: EndlessFromCallback<T>): IterableCircular<T> {
 }
 
 /**
+ * Constructs an iterable from an iterable of its results.
+ * @param results - An iterable (such as an array) of results.
+ * @returns - The constructed iterable.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts"
+ *
+ * // iter1 and iter2 are equivelant
+ * const iter1 = iter.create.endlessFrom([
+ *   { value: 0, done: false },
+ *   { value: 1, done: false },
+ *   { value: 2, done: false },
+ *   { value: 3, done: true },
+ * ])[Symbol.iterator]
+ * const iter2 = function* () {
+ *   yield 0;
+ *   yield 1;
+ *   yield 2;
+ *   return 3;
+ * }();
+ *
+ * console.log(iter1.next()) // -> { value: 0, done: false }
+ * console.log(iter1.next()) // -> { value: 1, done: false }
+ * console.log(iter1.next()) // -> { value: 2, done: false }
+ * console.log(iter1.next()) // -> { value: 3, done: true }
+ * ```
+ */
+export function fromResults<T>(
+  results: Iterable<IteratorResult<T>>,
+): IterableCircular<T> {
+  return {
+    [Symbol.iterator]() {
+      const iterator = results[Symbol.iterator]();
+
+      return {
+        next(): IteratorResult<T> {
+          const next = iterator.next();
+          if (next.value == null) {
+            return { value: undefined, done: true };
+          } else {
+            return next.value;
+          }
+        },
+        [Symbol.iterator]() {
+          return this;
+        },
+      };
+    },
+  };
+}
+
+/**
  * Creates an endless iterable of pseudorandom numbers.
  * @returns An iterable containing lazily calculated pseudorandom numbers.
  * @example
