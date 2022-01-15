@@ -84,3 +84,25 @@ Deno.test("flat", () => {
   const unflatArray2 = [[1, 2], 3, [[4, 5], 6]];
   assertEquals([...transformers.flat(unflatArray2, 2)], unflatArray2.flat(2));
 });
+
+Deno.test("completeFlat", () => {
+  const unflatArray = [
+    [[[[[[[[[[[[[[[[[[1]]]]]]]], 2]]]]]]]]], 3, 4],
+    5,
+    6,
+    7,
+    8,
+    9,
+  ];
+  assertEquals([...transformers.completeFlat(unflatArray)], [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+  ]);
+});

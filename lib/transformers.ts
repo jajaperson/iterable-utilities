@@ -323,6 +323,7 @@ export function rememeber<T>(it: Iterable<T>): IterableCircular<T> {
 }
 
 type NestedIterableContent<T> = Iterable<NestedIterableContent<T>> | T;
+// type NestedIterableUniform<T> = Iterable<T> | Iterable<NestedIterableUniform<T>>;
 
 /**
  * Lazily flattens a nested iterable to a given depth. Similar to
@@ -360,4 +361,29 @@ export function flat<T, Iter extends Iterable<NestedIterableContent<T>>>(
       },
     };
   }
+}
+
+/**
+ * Lazily flattens a nested iterable completely, such that none of its yielded
+ * values are iterable.
+ * @param iter - The iterable to be flattened.
+ * @returns The flattened iterable.
+ */
+export function completeFlat<
+  T,
+  Iter extends Iterable<NestedIterableContent<T>>,
+>(
+  iter: Iter,
+): IterableCircular<T> {
+  return {
+    *[Symbol.iterator]() {
+      for (const value of iter) {
+        if (isIterable(value)) {
+          yield* completeFlat(value);
+        } else {
+          yield value;
+        }
+      }
+    },
+  };
 }

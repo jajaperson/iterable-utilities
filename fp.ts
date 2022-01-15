@@ -27,6 +27,7 @@ export const indexedPairs = transformers.indexedPairs;
 export const chunkify = curryIterFunction(transformers.chunkify);
 export const remember = transformers.rememeber;
 export const flat = curryIterFunction(transformers.flat)
+export const completeFlat = transformers.completeFlat;
 
 // Effectors
 export const forEach = curryIterFunction(effectors.forEach);
