@@ -16,7 +16,8 @@ export interface ForEachCallback<T> {
 }
 
 /**
- * Performs the specified action for each item in an iterable. Non-lazy.
+ * Performs the specified action for each item in an iterable, consuming the
+ * iterable in the process.
  * @param it - The iterable being looped over.
  * @param {ForEachCallback} f - A function that accepts up to three arguments.
  * `forEach` calls `f` one time for each item in the iterable.
@@ -44,7 +45,7 @@ export function forEach<T>(it: Iterable<T>, f: ForEachCallback<T>): void {
 
 /**
  * Performs the specified action for each item in an iterable when the returned
- * iterable is iterated over. Like {@link forEach | `forEach`} but lazy.
+ * iterable is iterated over. Like {@link forEach | `forEach`} but non-consuming.
  *
  * Can be used to observe items of an iterable as they are released.
  * @param it - The iterable being observed.
