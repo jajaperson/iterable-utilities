@@ -30,3 +30,9 @@ Deno.test("curryIterFunction", () => {
   assertEquals(typeof take5, "function");
   assertEquals([...take5([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])].length, 5);
 });
+
+Deno.test("isIterable", () => {
+  assertEquals(util.isIterable([]), true);
+  assertEquals(util.isIterable({}), false);
+  assertEquals(util.isIterable(42), false);
+});

@@ -1,5 +1,4 @@
 import {
-  assert,
   assertEquals,
   assertThrows,
 } from "https://deno.land/std@0.84.0/testing/asserts.ts";
@@ -76,4 +75,12 @@ Deno.test("rememember", () => {
   const numbers10 = transformers.take(memIterable, 10);
 
   assertEquals([...transformers.take(numbers10, 5)], [...numbers5]);
+});
+
+Deno.test("flat", () => {
+  const unflatArray1 = [[1, 2], 3, [4, 5, 6]];
+  assertEquals([...transformers.flat(unflatArray1)], unflatArray1.flat());
+
+  const unflatArray2 = [[1, 2], 3, [[4, 5], 6]];
+  assertEquals([...transformers.flat(unflatArray2, 2)], unflatArray2.flat(2));
 });

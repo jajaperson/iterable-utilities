@@ -1,3 +1,4 @@
+import { isIterable } from "./internal/util.ts";
 import { IterableCircular, IterablePredicateCallback } from "./types.ts";
 
 /**
@@ -280,7 +281,7 @@ export function chunkify<T>(
 /**
  * Makes an iterable remember. Each time it is iterated over it will yield the
  * same results.
- * @param it - The iterable to remember
+ * @param it - The iterable to remember.
  * @typeParam T - The type of items in `it`.
  * @returns A new iterable which remembers.
  * @example
@@ -319,4 +320,44 @@ export function rememeber<T>(it: Iterable<T>): IterableCircular<T> {
       }
     },
   };
+}
+
+type NestedIterableContent<T> = Iterable<NestedIterableContent<T>> | T;
+
+/**
+ * Lazily flattens a nested iterable to a given depth. Similar to
+ * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat | `Array.prototype.flat`}
+ * @param iter - The iterable to be flattened.
+ * @param depth - The depth to which `iter` should be flattened.
+ * @returns The flattened iterable.
+ */
+export function flat<T, Iter extends Iterable<NestedIterableContent<T>>>(
+  iter: Iter,
+  depth = 1,
+): IterableCircular<NestedIterableContent<T>> {
+  if (!(Number.isSafeInteger(depth) && depth >= 0)) {
+    throw new RangeError(
+      `Expected \`chunkSize\` to be an integer from 1 and up, got \`${depth}\``,
+    );
+  }
+
+  if (depth === 0) {
+    return {
+      *[Symbol.iterator]() {
+        yield* iter;
+      },
+    };
+  } else {
+    return {
+      *[Symbol.iterator]() {
+        for (const value of iter) {
+          if (isIterable(value)) {
+            yield* flat(value, depth - 1);
+          } else {
+            yield value;
+          }
+        }
+      },
+    };
+  }
 }

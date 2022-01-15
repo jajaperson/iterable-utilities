@@ -38,3 +38,13 @@ export function curryIterFunction<T, U, Args extends unknown[]>(
 ): CurriedIterFunction<T, U, Args> {
   return (...args) => (it) => f(it, ...args);
 }
+
+/**
+ * Check if a value is an iterable.
+ * @param x - The value to be checked
+ * @returns Whether the value implements `Iterable`
+ */
+// deno-lint-ignore no-explicit-any
+export function isIterable(x: any): x is Iterable<any> {
+  return typeof x[Symbol.iterator] === "function";
+}

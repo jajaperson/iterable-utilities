@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Transformers
+  - `iter.flat()` (like `Array.prototype.flat`)
+
 ## [2.3.0] - 2021-02-03
 
 ### Added
