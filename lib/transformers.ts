@@ -1,5 +1,6 @@
-import { isIterable } from "./internal/util.ts";
+import { isIterable, kComb } from "./internal/util.ts";
 import { IterableCircular, IterablePredicateCallback } from "./types.ts";
+import { EndlessFromCallback } from "./generators.ts";
 
 /**
  * @link map | `map`} callback.
@@ -329,6 +330,8 @@ type NestedIterableContent<T> = Iterable<NestedIterableContent<T>> | T;
  * Lazily flattens a nested iterable to a given depth. Similar to
  * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat | `Array.prototype.flat`}
  * @param iter - The iterable to be flattened.
+ * @typeParam T - The type of values for the returned iterable.
+ * @typeParam Iter - The type of the iterable.
  * @param depth - The depth to which `iter` should be flattened.
  * @returns The flattened iterable.
  */
@@ -367,6 +370,8 @@ export function flat<T, Iter extends Iterable<NestedIterableContent<T>>>(
  * Lazily flattens a nested iterable completely, such that none of its yielded
  * values are iterable.
  * @param iter - The iterable to be flattened.
+ * @typeParam T - The type of values for the returned iterable.
+ * @typeParam Iter - The type of the iterable.
  * @returns The flattened iterable.
  */
 export function completeFlat<
@@ -383,6 +388,25 @@ export function completeFlat<
         } else {
           yield value;
         }
+      }
+    },
+  };
+}
+
+/**
+ * Strips and fuses an iterable, such that any results including and after a
+ * result with `{ done: true }` are ignored. In the current implementation of
+ * most functions, both of these behaviours already happen, so generally this is
+ * only necessary when it is the only operation being applied.
+ * @param iter - The iterable to be fused.
+ * @typeParam T - The type of values for the returned iterable.
+ * @returns A stripped and fused iterable.
+ */
+export function fuse<T>(iter: Iterable<T>): IterableCircular<T> {
+  return {
+    *[Symbol.iterator]() {
+      for (const value of iter) {
+        yield value;
       }
     },
   };

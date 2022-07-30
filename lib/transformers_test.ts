@@ -106,3 +106,32 @@ Deno.test("completeFlat", () => {
     9,
   ]);
 });
+
+Deno.test("fuse", () => {
+  const unfusedIter = function* () {
+    yield 0;
+    yield 1;
+    yield 2;
+    return 3;
+  }();
+  const fusedIter = transformers.fuse(unfusedIter)[Symbol.iterator]();
+
+  fusedIter.next();
+  fusedIter.next();
+  fusedIter.next();
+  assertEquals(fusedIter.next().value, undefined);
+});
+
+Deno.test("fuse & create.fromResults", () => {
+  const unfusedIter = create.fromResults([
+    { value: 0, done: false },
+    { value: 1, done: false },
+    { value: 2, done: true },
+    { value: 3, done: false },
+  ]);
+  const fusedIter = transformers.fuse(unfusedIter)[Symbol.iterator]();
+  fusedIter.next();
+  fusedIter.next();
+  assertEquals(fusedIter.next().value, undefined);
+  assertEquals(fusedIter.next().value, undefined);
+});

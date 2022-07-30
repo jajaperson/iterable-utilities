@@ -13,6 +13,7 @@ and this project adheres to
 - Transformers
   - `iter.flat()` (like `Array.prototype.flat`)
   - `iter.completeFlat()` for flattening an iterable completely.
+  -  `iter.fuse()` for ignoring values after and including the return.
 - Generators
   - `iter.create.fromResults()` for creating iterators directly from results
 
