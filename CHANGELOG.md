@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [2.4.0] - 2020-07-30
+
 ### Added
 
 - NPM support :tada:
@@ -147,7 +149,7 @@ and this project adheres to
   - `iter.concat` (like `Array.prototype.concat`)
 
 [unreleased]:
-  https://github.com/jajaperson/iterable-utilities/compare/v2.3.0...HEAD
+  https://github.com/jajaperson/iterable-utilities/compare/v2.4.0...HEAD
 [0.2.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.2.0
 [0.1.1]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.1.1
 [0.1.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.1.0
@@ -157,3 +159,4 @@ and this project adheres to
 [2.2.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v2.2.0
 [2.2.1]: https://github.com/jajaperson/iterable-utilities/releases/tag/v2.2.1
 [2.3.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v2.3.0
+[2.4.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v2.4.0
