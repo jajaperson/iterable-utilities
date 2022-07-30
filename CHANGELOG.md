@@ -10,6 +10,7 @@ and this project adheres to
 
 ### Added
 
+- NPM support :tada:
 - Transformers
   - `iter.flat()` (like `Array.prototype.flat`)
   - `iter.completeFlat()` for flattening an iterable completely.

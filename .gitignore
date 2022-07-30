@@ -5,5 +5,8 @@
 .vscode
 .vim
 
+# dnt build output
+npm/
+
 # Playground
 playground.ts

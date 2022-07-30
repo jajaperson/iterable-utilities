@@ -1,4 +1,4 @@
-name: Test Deno Module
+name: Tests
 
 on:
   push:
@@ -31,5 +31,9 @@ jobs:
         uses: denolib/setup-deno@v2
         with:
           deno-version: ${{ matrix.deno }}
-      - name: Run unit tests
+      - name: Run unit tests on Deno
         run: deno test
+      - uses: actions/setup-node@v2
+      - name: Build and run unit tests on the npm version
+        run: deno run -A ./scripts/build_npm.ts
+

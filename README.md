@@ -16,6 +16,8 @@ see [IxJS](https://ghub.io/ix) (for Deno this can be imported via
 
 ## Usage
 
+### Deno
+
 The module is currently hosted on [deno.land/x/](https://deno.land/x/).
 
 ```ts
@@ -29,6 +31,14 @@ const odds = iter.filter(naturals, (n) => n % 2 === 1);
 for (const num of iter.take(odds, 5)) {
   console.log(num);
 }
+```
+
+### NPM
+
+You can use this as an npm package too.
+
+```sh
+$ npm install --save iterable-utilities
 ```
 
 ### Functional programming
