@@ -15,7 +15,11 @@ jobs:
           deno-version: v1.x
       - name: Run unit tests on Deno
         run: deno test
-      - uses: actions/setup-node@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
       - name: Build and run unit tests on the npm version
         run: deno run -A ./scripts/build_npm.ts
       - name: npm publish

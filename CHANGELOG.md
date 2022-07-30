@@ -8,6 +8,9 @@ and this project adheres to
 
 ## [Unreleased]
 
+- Another attempt to fix the NPM release
+  (debugging actions can be awful sometimes).
+
 ## [2.4.1] - 2020-07-30
 
 ### Changed
