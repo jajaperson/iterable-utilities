@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [2.5.0] - 2020-08-12
+
 ### Added
 
 - `iter.create.fromChars()` and `iter.create.fromCharCodes()` for iterating over UTF-16 character units and codes respectively.
@@ -166,7 +168,7 @@ and this project adheres to
   - `iter.concat` (like `Array.prototype.concat`)
 
 [unreleased]:
-  https://github.com/jajaperson/iterable-utilities/compare/v2.4.2...HEAD
+  https://github.com/jajaperson/iterable-utilities/compare/v2.5.0...HEAD
 [0.2.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.2.0
 [0.1.1]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.1.1
 [0.1.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.1.0
@@ -179,3 +181,4 @@ and this project adheres to
 [2.4.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v2.4.0
 [2.4.1]: https://github.com/jajaperson/iterable-utilities/releases/tag/v2.4.1
 [2.4.2]: https://github.com/jajaperson/iterable-utilities/releases/tag/v2.4.2
+[2.5.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v2.5.0
