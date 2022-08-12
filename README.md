@@ -121,7 +121,7 @@ Full API documentation can be found
 - [x] `reduce`
 - [x] `some`
 - [x] `forEach`
-- [ ] `flat`
+- [x] `flat`
 - [ ] `flatMap`
 
 ### Currently not being considered
