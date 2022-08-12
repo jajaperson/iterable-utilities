@@ -89,3 +89,28 @@ Deno.test("fromResults", () => {
     done = r1.done || false;
   }
 });
+
+Deno.test("fromCharCodes", () => {
+  const str = "\u0077\u006f\u0074\u0020\ud83e\udee5\u003f";
+  const iter = generators.fromCharCodes(str)[Symbol.iterator]();
+
+  assertEquals(iter.next().value, 0x0077);
+  assertEquals(iter.next().value, 0x006f);
+  assertEquals(iter.next().value, 0x0074);
+  assertEquals(iter.next().value, 0x0020);
+  assertEquals(iter.next().value, 0xd83e);
+  assertEquals(iter.next().value, 0xdee5);
+  assertEquals(iter.next().value, 0x003f);
+});
+
+Deno.test("fromChars", () => {
+  const str = "🦀💦🥱";
+  const chars = generators.fromChars(str)[Symbol.iterator]();
+
+  assertEquals(chars.next().value, "\ud83e");
+  assertEquals(chars.next().value, "\udd80");
+  assertEquals(chars.next().value, "\ud83d");
+  assertEquals(chars.next().value, "\udca6");
+  assertEquals(chars.next().value, "\ud83e");
+  assertEquals(chars.next().value, "\udd71");
+});

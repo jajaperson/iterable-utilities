@@ -282,3 +282,96 @@ export function range(
     },
   };
 }
+
+/**
+ * Creates an iterable over a string's char codes.
+ *
+ * Note that, in contrast to [`String.prototype[@@iterator]`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/@@iterator),
+ * this does not treat astral codepoints as single characters,
+ * but rather as the constituent surrogate pair.
+ * Each char code is therefore between `0x0000` and `0xffff = 2¹⁶ - 1`.
+ * See the example below.
+ * @param str - A string to extract char codes from.
+ * @returns An iterable over the char codes.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const str = "🦀💦🥱";
+ * const chars = Uint16Array.from(iter.create.fromCharCodes(str));
+ *
+ * console.log(chars.length); // -> 6
+ * console.log(chars[0].toString(16)); // -> d83e
+ * console.log(chars[1].toString(16)); // -> dd80
+ * console.log(chars[2].toString(16)); // -> d83d
+ * console.log(chars[3].toString(16)); // -> dca6
+ * console.log(chars[4].toString(16)); // -> d83e
+ * console.log(chars[5].tostring(16)); // -> dd71
+ * console.log("\ud83e\udd80\ud83d\udca6\ud83e\udd71"); // -> 🦀💦🥱
+ * ```
+ */
+export function fromCharCodes(str: string): IterableCircular<number> {
+  return {
+    *[Symbol.iterator]() {
+      let i = 0;
+
+      while (true) {
+        const c = str.charCodeAt(i);
+
+        if (c !== c) {
+          return;
+        } else {
+          yield c;
+        }
+
+        i++;
+      }
+    },
+  };
+}
+
+/**
+ * Creates an iterable over a string's chars.
+ *
+ * Note that, in contrast to [`String.prototype[@@iterator]`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/@@iterator),
+ * this does not treat astral codepoints as single characters,
+ * but rather as the constituent surrogate pair.
+ * Each char code is therefore between `0x0000` and `0xffff = 2¹⁶ - 1`.
+ * See the example below.
+ * @param str - A string to extract char codes from.
+ * @returns An iterable over the char codes.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const str = "🦀💦🥱";
+ * const chars = iter.create.fromChars(str)[Symbol.iterator]()
+ *
+ * console.log(chars.next().value === "\ud83e"); // -> true
+ * console.log(chars.next().value === "\udd80"); // -> true
+ * console.log(chars.next().value === "\ud83d"); // -> true
+ * console.log(chars.next().value === "\udca6"); // -> true
+ * console.log(chars.next().value === "\ud83e"); // -> true
+ * console.log(chars.next().value === "\udd71"); // -> true
+ * console.log("\ud83e\udd80\ud83d\udca6\ud83e\udd71"); // -> 🦀💦🥱
+ * ```
+ */
+export function fromChars(str: string): IterableCircular<string> {
+  return {
+    *[Symbol.iterator]() {
+      let i = 0;
+
+      while (true) {
+        const c = str.charAt(i);
+
+        if (c !== c) {
+          return;
+        } else {
+          yield c;
+        }
+
+        i++;
+      }
+    },
+  };
+}

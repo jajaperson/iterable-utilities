@@ -8,7 +8,13 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- `iter.create.fromChars()` and `iter.create.fromCharCodes()` for iterating over UTF-16 character units and codes respectively.
+
 ## [2.4.2] - 2020-07-30
+
+### Changed
 
 - Another attempt to fix the NPM release
   (debugging actions can be awful sometimes).
@@ -16,6 +22,7 @@ and this project adheres to
 ## [2.4.1] - 2020-07-30
 
 ### Changed
+
 - Fixed NPM release action.
 
 ## [2.4.0] - 2020-07-30
