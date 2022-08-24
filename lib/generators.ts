@@ -237,7 +237,9 @@ export function increments(initial = 0, step = 1): IterableCircular<number> {
  * Creates an iterable over an inclusive range of numbers.
  * @param endOrStart - If no other arguments are provided, the range will go
  * from 0 until `endOrRangeStart`. Otherwise, this acts as the start of the
- * range.
+ * range. To stress, this is _inclusive_, in contrast to Python's
+ * [`range()`](https://docs.python.org/3.10/library/stdtypes.html?highlight=range#range)
+ * iterables.
  * @param end - The end of the range.
  * @param step - The amount to increment each time. Sign is ignored.
  * @returns An iterable over the range.

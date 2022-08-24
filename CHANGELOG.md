@@ -12,6 +12,10 @@ and this project adheres to
 
 - `iter.peekable()` inspired by Rust's [`std::iter::Peekable`](https://doc.rust-lang.org/std/iter/struct.Peekable.html).
 
+## Changed
+
+- (docs) Added special note on the inclusivity of `create.range()`.
+
 ## [2.5.0] - 2020-08-12
 
 ### Added
