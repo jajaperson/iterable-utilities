@@ -1,6 +1,9 @@
-import { isIterable, kComb } from "./internal/util.ts";
-import { IterableCircular, IterablePredicateCallback } from "./types.ts";
-import { EndlessFromCallback } from "./generators.ts";
+import { isIterable } from "./internal/util.ts";
+import {
+  IterableCircular,
+  IterablePredicateCallback,
+  Peekable,
+} from "./types.ts";
 
 /**
  * @link map | `map`} callback.
@@ -410,4 +413,61 @@ export function fuse<T>(iter: Iterable<T>): IterableCircular<T> {
       }
     },
   };
+}
+
+/**
+ * Generates a peekable iterator from the provided iterable (See {@link Peekable}).
+ * Note that unlike other transformers, this returns an extended `IterableIterator`
+ * rather than an iterable. Inspired by Rust's
+ * [`std::iter::Peekable`](https://doc.rust-lang.org/std/iter/struct.Peekable.html).
+ * @param iter - The iterable to make peekable
+ * @returns A peekable iterator on the items of `iter`.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ * import { assert } from "https://deno.land/std@0.84.0/testing/asserts.ts";
+ *
+ * const peekable = iter.peekable(iter.create.range(5));
+ *
+ * for (const n of peek) {
+ *   assert(n + 1 === peekable.peek().value ||  peekable.peek().done);
+ * }
+ * ```
+ */
+export function peekable<T>(iter: Iterable<T>): Peekable<T> {
+  return new CPeekable(iter);
+}
+
+/**
+ * Implementation of the {@link Peekable} interface.
+ *
+ * The choice of using a class here is purely for the encapsulation it provides.
+ * @private
+ */
+class CPeekable<T> implements Peekable<T> {
+  #cachedResult?: IteratorResult<T>;
+  #internalIterator: Iterator<T>;
+
+  constructor(iter: Iterable<T>) {
+    this.#internalIterator = iter[Symbol.iterator]();
+  }
+
+  next() {
+    return this.#clearCache() ?? this.#internalIterator.next();
+  }
+
+  peek() {
+    this.#cachedResult = this.#cachedResult ?? this.#internalIterator.next();
+    return this.#cachedResult;
+  }
+
+  [Symbol.iterator]() {
+    return this;
+  }
+
+  #clearCache(): IteratorResult<T> | undefined {
+    const cache = this.#cachedResult;
+    this.#cachedResult = undefined;
+    return cache;
+  }
 }

@@ -1,4 +1,5 @@
 import {
+  assert,
   assertEquals,
   assertThrows,
 } from "https://deno.land/std@0.84.0/testing/asserts.ts";
@@ -134,4 +135,24 @@ Deno.test("fuse & create.fromResults", () => {
   fusedIter.next();
   assertEquals(fusedIter.next().value, undefined);
   assertEquals(fusedIter.next().value, undefined);
+});
+
+Deno.test("peekable", () => {
+  const peekableIter1 = transformers.peekable([0, 1, 2, 3]);
+  assertEquals(peekableIter1.next().value, 0);
+  assertEquals(peekableIter1.peek().value, 1);
+  assertEquals(peekableIter1.next().value, 1);
+  assertEquals(peekableIter1.peek().value, 2);
+  assertEquals(peekableIter1.peek().value, 2);
+  assertEquals(peekableIter1.peek().value, 2);
+  assertEquals(peekableIter1.next().value, 2);
+  assertEquals(peekableIter1.next().value, 3);
+  assertEquals(peekableIter1.peek().value, undefined);
+  assertEquals(peekableIter1.peek().done, true);
+  assertEquals(peekableIter1.next().done, true);
+
+  const peekableIter2 = transformers.peekable([0, 1, 2, 3]);
+  for (const n of peekableIter2) {
+    assert(n + 1 === peekableIter2.peek().value || peekableIter2.peek().done);
+  }
 });

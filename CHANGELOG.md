@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- `iter.peekable()` inspired by Rust's [`std::iter::Peekable`](https://doc.rust-lang.org/std/iter/struct.Peekable.html).
+
 ## [2.5.0] - 2020-08-12
 
 ### Added

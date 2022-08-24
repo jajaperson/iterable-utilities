@@ -37,6 +37,16 @@ export interface IterableCircular<T> extends Iterable<T> {
 }
 
 /**
+ * An iterator that defines a peeking mechanism.
+ * Inspired by Rust's [`std::Iter::Peekable`](https://doc.rust-lang.org/std/iter/struct.Peekable.html)
+ * @typeParam T - Type of items in the iterator.
+ */
+export interface Peekable<T> extends IterableIterator<T> {
+  /** Peeks the next item of the iterator without consuming it. */
+  peek(): IteratorResult<T>;
+}
+
+/**
  * Type for all iterable functions in the library.
  * @typeParam T - The type of items in the iterable argument.
  * @typeParam U - The return type of the function.
