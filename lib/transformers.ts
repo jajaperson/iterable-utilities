@@ -429,7 +429,7 @@ export function fuse<T>(iter: Iterable<T>): IterableCircular<T> {
  *
  * const peekable = iter.peekable(iter.create.range(5));
  *
- * for (const n of peek) {
+ * for (const n of peekable) {
  *   assert(n + 1 === peekable.peek().value ||  peekable.peek().done);
  * }
  * ```
