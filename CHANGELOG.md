@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+- Point docs to [deno.land](deno.land/x/iter/mod.ts) rather than [doc.deno.land](https://doc.deno.land/https://deno.land/x/iter/mod.ts)
+
 ## [2.6.0] - 2020-08-24
 
 ### Added

@@ -18,7 +18,7 @@ see [IxJS](https://ghub.io/ix) (for Deno this can be imported via
 
 ### Deno
 
-The module is currently hosted on [deno.land/x/](https://deno.land/x/).
+The module is currently hosted on <https://deno.land/x/iter>.
 
 ```ts
 import * as iter from "https://deno.land/x/iter/mod.ts";
@@ -106,7 +106,7 @@ point you should probably be breaking your code into smaller functions anyway.
 ## API
 
 Full API documentation can be found
-[here](https://doc.deno.land/https/deno.land/x/iter/mod.ts)
+[here](https://deno.land/x/iter/mod.ts)
 
 ## `Array.prototype` parity completeness
 
