@@ -1,4 +1,4 @@
-import { build, emptyDir } from "https://deno.land/x/dnt/mod.ts";
+import { build, emptyDir } from "https://deno.land/x/dnt@0.29.1/mod.ts";
 import { LICENSE as license, VERSION as version } from "../version.ts";
 
 await emptyDir("./npm");
