@@ -8,5 +8,10 @@
     "files": {
       "exclude": ["npm/"]
     }
+  },
+  "test": {
+    "files": {
+      "exclude": ["npm/"]
+    }
   }
 }
