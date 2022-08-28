@@ -305,7 +305,7 @@ export function chunkify<T>(
  * console.log(iterator2.next().value); // ~> 0.30540840030529215
  * ```
  */
-export function rememeber<T>(it: Iterable<T>): IterableCircular<T> {
+export function remember<T>(it: Iterable<T>): IterableCircular<T> {
   const history = new Array<T>();
   const iterator = it[Symbol.iterator]();
   let done = false;
@@ -331,7 +331,7 @@ type NestedIterableContent<T> = Iterable<NestedIterableContent<T>> | T;
 
 /**
  * Lazily flattens a nested iterable to a given depth. Similar to
- * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat | `Array.prototype.flat`}
+ * [`Array.prototype.flat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat)
  * @param iter - The iterable to be flattened.
  * @typeParam T - The type of values for the returned iterable.
  * @typeParam Iter - The type of the iterable.
@@ -344,7 +344,7 @@ export function flat<T, Iter extends Iterable<NestedIterableContent<T>>>(
 ): IterableCircular<NestedIterableContent<T>> {
   if (!(Number.isSafeInteger(depth) && depth >= 0)) {
     throw new RangeError(
-      `Expected \`chunkSize\` to be an integer from 1 and up, got \`${depth}\``,
+      `Expected \`depth\` to be an integer from 0 and up, got \`${depth}\``,
     );
   }
 

@@ -1,3 +1,5 @@
+export { LICENSE, VERSION } from "./version.ts";
+
 import { curryIterFunction } from "./lib/internal/util.ts";
 import * as combinators from "./lib/combiners.ts";
 import * as reducers from "./lib/reducers.ts";
@@ -11,9 +13,10 @@ export const concat = curryIterFunction(combinators.concat);
 // Reducers
 export const reduce = curryIterFunction(reducers.reduce);
 export const some = curryIterFunction(reducers.some);
-export const includes = curryIterFunction(reducers.includes);
 export const every = curryIterFunction(reducers.every);
+export const includes = curryIterFunction(reducers.includes);
 export const find = curryIterFunction(reducers.find);
+export const findIndex = curryIterFunction(reducers.findIndex);
 export const sum = reducers.sum;
 export const product = reducers.product;
 export const norm = reducers.norm;
@@ -25,9 +28,11 @@ export const until = curryIterFunction(transformers.until);
 export const filter = curryIterFunction(transformers.filter);
 export const indexedPairs = transformers.indexedPairs;
 export const chunkify = curryIterFunction(transformers.chunkify);
-export const remember = transformers.rememeber;
+export const remember = transformers.remember;
 export const flat = curryIterFunction(transformers.flat);
 export const completeFlat = transformers.completeFlat;
+export const fuse = transformers.fuse;
+export const peekable = transformers.peekable;
 
 // Effectors
 export const forEach = curryIterFunction(effectors.forEach);

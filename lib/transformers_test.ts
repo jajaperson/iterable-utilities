@@ -71,7 +71,7 @@ Deno.test("chunkify", () => {
 });
 
 Deno.test("rememember", () => {
-  const memIterable = transformers.rememeber(create.randomNumbers());
+  const memIterable = transformers.remember(create.randomNumbers());
   const numbers5 = transformers.take(memIterable, 5);
   const numbers10 = transformers.take(memIterable, 10);
 

@@ -33,7 +33,7 @@ for (const num of iter.take(odds, 5)) {
 }
 ```
 
-### NPM
+### npm
 
 You can use this as an npm package too.
 
@@ -41,10 +41,21 @@ You can use this as an npm package too.
 $ npm install --save iterable-utilities
 ```
 
+```ts
+import * as iter from "iterable-utilities";
+
+const naturals = iter.create.increments(1);
+const odds = iter.filter(naturals, (n) => n % 2 === 1);
+
+for (const num of iter.take(odds, 5)) {
+  console.log(num);
+}
+```
+
 ### Functional programming
 
 An alternative module is provided for functional programming styles, with a
-sensible level of currying.
+sensible level of currying. In Deno:
 
 ```ts
 import * as iter from "https://deno.land/x/iter/fp.ts";
@@ -60,8 +71,29 @@ for (const num of iter.take(5)(odds)) {
 }
 ```
 
-These curried functions are also available in the main `mod.ts` through
-`iter.curried`.
+and from npm:
+
+```ts
+import * as iter from "iterable-utilities/fp";
+
+const naturals = iter.create.increments(1);
+const filterOdds = iter.filter<number>((n) => n % 2 === 1);
+const odds = filterOdds(naturals);
+
+for (const num of iter.take(5)(odds)) {
+  console.log(num);
+}
+```
+
+These curried functions are also available in the main module under
+`iter.curried`
+
+```ts
+// Deno
+import { curried } from "https://deno.land/x/iter/fp.ts";
+// npm
+import { curried } from "iterable-utilities";
+```
 
 #### Chaining operations (composition)
 
@@ -74,39 +106,38 @@ If you can deal with a slightly alien curried syntax,
 [`copb`](https://github.com/jajaperson/copb) allows for type-safe currying of an
 unlimited number of functions.
 
-<!-- prettier-ignore-start -->
+<!-- deno-fmt-ignore-start -->
 
 ```ts
 import * as iter from "https://deno.land/x/iter/fp.ts";
 import { c, p } from "https://deno.land/x/copb/mod.ts";
 
 const pipeline = c(
-  p(iter.map<number>(x => x * 100)) // Only needed type annotation, the rest is inferred.
-   (iter.map(Math.floor))
-   (iter.filter(x => x % 3 === 0))
-   (iter.take(30))
-   (iter.reduce(
-     (str, x) => str + x, ""
-   ))
-   (console.log)
+  p (iter.map<number>(x => x * 100)) // Only needed type annotation, the rest is inferred.
+    (iter.map(Math.floor))
+    (iter.filter(x => x % 3 === 0))
+    (iter.take(30))
+    (iter.reduce(
+      (str, x) => str + x, ""
+    ))
+    (console.log)
 );
 
 pipeline(iter.create.randomNumbers());
 // ~> 661299633996843372696936915845169485496993302427362472690
 ```
 
-<!-- prettier-ignore-end -->
+<!-- deno-fmt-ignore-end -->
 
-If that isn't your thing,
-[`compose`](https://github.com/KSXGitHub/deno-compose) achieves a similar thing
-in the familar JavaScript syntax by providing 64 type overloads. This does limit
-the number of functions which can be composed in one go, but if you reach that
-point you should probably be breaking your code into smaller functions anyway.
+If that isn't your thing, [`compose`](https://github.com/KSXGitHub/deno-compose)
+achieves a similar thing in the familar JavaScript syntax by providing 64 type
+overloads. This does limit the number of functions which can be composed in one
+go, but if you reach that point you should probably be breaking your code into
+smaller functions anyway.
 
 ## API
 
-Full API documentation can be found
-[here](https://deno.land/x/iter/mod.ts)
+Full API documentation can be found [here](https://deno.land/x/iter/mod.ts)
 
 ## `Array.prototype` parity completeness
 

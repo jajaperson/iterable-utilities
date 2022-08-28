@@ -4,7 +4,10 @@ import { LICENSE as license, VERSION as version } from "../version.ts";
 await emptyDir("./npm");
 
 await build({
-  entryPoints: ["./mod.ts"],
+  entryPoints: ["./mod.ts", {
+    name: "./fp",
+    path: "./fp.ts",
+  }],
   outDir: "./npm",
   shims: {
     deno: "dev",

@@ -8,30 +8,43 @@ and this project adheres to
 
 ## [Unreleased]
 
-- Point docs to [deno.land](deno.land/x/iter/mod.ts) rather than [doc.deno.land](https://doc.deno.land/https://deno.land/x/iter/mod.ts)
+### Added
+
+- Curried exports of all functions (I've been forgetting to update these, so I
+  also added a test to remind me to do so)
+- Alternate npm entry point for fp.
+
+### Changed
+
+- Point docs to [deno.land](deno.land/x/iter/mod.ts) rather than
+  [doc.deno.land](https://doc.deno.land/https://deno.land/x/iter/mod.ts)
 
 ## [2.6.0] - 2020-08-24
 
 ### Added
 
-- `iter.peekable()` inspired by Rust's [`std::iter::Peekable`](https://doc.rust-lang.org/std/iter/struct.Peekable.html).
+- `iter.peekable()` inspired by Rust's
+  [`std::iter::Peekable`](https://doc.rust-lang.org/std/iter/struct.Peekable.html).
 
 ### Changed
 
+- (:warning: breaking) Fixed typo in `iter.remember()` (originally
+  `iter.rememeber()`)
 - (docs) Added special note on the inclusivity of `create.range()`.
 
 ## [2.5.0] - 2020-08-12
 
 ### Added
 
-- `iter.create.fromChars()` and `iter.create.fromCharCodes()` for iterating over UTF-16 character units and codes respectively.
+- `iter.create.fromChars()` and `iter.create.fromCharCodes()` for iterating over
+  UTF-16 character units and codes respectively.
 
 ## [2.4.2] - 2020-07-30
 
 ### Changed
 
-- Another attempt to fix the NPM release
-  (debugging actions can be awful sometimes).
+- Another attempt to fix the NPM release (debugging actions can be awful
+  sometimes).
 
 ## [2.4.1] - 2020-07-30
 
@@ -47,7 +60,7 @@ and this project adheres to
 - Transformers
   - `iter.flat()` (like `Array.prototype.flat`)
   - `iter.completeFlat()` for flattening an iterable completely.
-  -  `iter.fuse()` for ignoring values after and including the return.
+  - `iter.fuse()` for ignoring values after and including the return.
 - Generators
   - `iter.create.fromResults()` for creating iterators directly from results
 
@@ -179,8 +192,7 @@ and this project adheres to
   - `iter.pair()` for zipping two iterables.
   - `iter.concat` (like `Array.prototype.concat`)
 
-[unreleased]:
-  https://github.com/jajaperson/iterable-utilities/compare/v2.6.0...HEAD
+[unreleased]: https://github.com/jajaperson/iterable-utilities/compare/v2.6.0...HEAD
 [0.2.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.2.0
 [0.1.1]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.1.1
 [0.1.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v0.1.0
