@@ -13,6 +13,8 @@ and this project adheres to
 - Curried exports of all functions (I've been forgetting to update these, so I
   also added a test to remind me to do so)
 - Alternate npm entry point for fp.
+- Testing now includes [`copb`](https://deno.land/x/copb) compatibility
+  (including the npm version).
 
 ### Changed
 

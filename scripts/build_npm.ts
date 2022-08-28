@@ -12,6 +12,12 @@ await build({
   shims: {
     deno: "dev",
   },
+  mappings: {
+    "https://deno.land/x/copb@v1.0.1/mod.ts": {
+      name: "copb",
+      version: "^1.0.1",
+    },
+  },
   package: {
     name: "iterable-utilities",
     version,
@@ -24,6 +30,9 @@ await build({
     },
     bugs: {
       url: "https://github.com/jajaperson/iterable-utilities/issues",
+    },
+    devDependecies: {
+      "copb": "^1.0.1",
     },
   },
 });
