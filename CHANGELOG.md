@@ -18,6 +18,8 @@ and this project adheres to
 
 ### Changed
 
+- (:warning: breaking) Fixed typo in `iter.remember()` (originally
+  `iter.rememeber()`)
 - Point docs to [deno.land](deno.land/x/iter/mod.ts) rather than
   [doc.deno.land](https://doc.deno.land/https://deno.land/x/iter/mod.ts)
 
@@ -30,8 +32,6 @@ and this project adheres to
 
 ### Changed
 
-- (:warning: breaking) Fixed typo in `iter.remember()` (originally
-  `iter.rememeber()`)
 - (docs) Added special note on the inclusivity of `create.range()`.
 
 ## [2.5.0] - 2020-08-12
