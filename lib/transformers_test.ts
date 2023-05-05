@@ -68,6 +68,11 @@ Deno.test("chunkify", () => {
   for (const [x, y] of transformers.chunkify(stripIterable(numbers), 2)) {
     assertEquals(x + y, 2 * x + 1);
   }
+
+  const expected = [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]];
+
+  assertEquals([...transformers.chunkify(numbers, 2)], expected);
+  assertEquals([...transformers.chunkify(stripIterable(numbers), 2)], []);
 });
 
 Deno.test("rememember", () => {
