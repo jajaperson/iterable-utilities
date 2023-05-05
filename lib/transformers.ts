@@ -260,8 +260,8 @@ export function chunkify<T>(
       if (Array.isArray(it)) {
         for (let index = 0; index < it.length; index += chunkSize) {
           yield it.slice(index, index + chunkSize);
-          return;
         }
+        return;
       }
 
       let chunk = [];
