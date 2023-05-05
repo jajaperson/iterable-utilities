@@ -1,17 +1,5 @@
 {
-  "lint": {
-    "files": {
-      "exclude": ["npm/"]
-    }
-  },
-  "fmt": {
-    "files": {
-      "exclude": ["npm/"]
-    }
-  },
-  "test": {
-    "files": {
-      "exclude": ["npm/"]
-    }
-  }
+  "lint": { "exclude": ["npm/"] },
+  "fmt": { "exclude": ["npm/"] },
+  "test": { "exclude": ["npm/"] }
 }
