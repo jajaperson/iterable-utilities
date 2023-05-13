@@ -10,6 +10,20 @@ export function kComb<T>(value: T): () => T {
   return () => value;
 }
 
+const underlying = Symbol();
+
+class StrippedIterable<T> implements Iterable<T> {
+  [underlying]: Iterable<T>;
+
+  constructor(original: Iterable<T>) {
+    this[underlying] = original;
+  }
+
+  [Symbol.iterator]() {
+    return this[underlying][Symbol.iterator]();
+  }
+}
+
 /**
  * Strips an iterable of all other properties so it only contains the iterator
  * symbol
@@ -18,10 +32,8 @@ export function kComb<T>(value: T): () => T {
  * @returns An iterable object stripped of all other properties.
  * @internal
  */
-export function stripIterable<T>(it: Iterable<T>): Iterable<T> {
-  return {
-    [Symbol.iterator]: it[Symbol.iterator],
-  };
+export function stripIterable<T>(it: Iterable<T>): StrippedIterable<T> {
+  return new StrippedIterable(it);
 }
 
 /**
@@ -34,9 +46,11 @@ export function stripIterable<T>(it: Iterable<T>): Iterable<T> {
  * @internal
  */
 export function curryIterFunction<T, U, Args extends unknown[]>(
-  f: IterFunction<T, U, Args>,
+  f: IterFunction<T, U, Args>
 ): CurriedIterFunction<T, U, Args> {
-  return (...args) => (it) => f(it, ...args);
+  return (...args) =>
+    (it) =>
+      f(it, ...args);
 }
 
 /**
