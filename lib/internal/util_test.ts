@@ -1,8 +1,4 @@
-import {
-  assertEquals,
-  assertNotEquals,
-  assertStrictEquals,
-} from "https://deno.land/std@0.84.0/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std@0.84.0/testing/asserts.ts";
 import * as util from "./util.ts";
 import { take } from "../../mod.ts";
 
