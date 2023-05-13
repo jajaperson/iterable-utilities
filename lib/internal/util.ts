@@ -46,11 +46,9 @@ export function stripIterable<T>(it: Iterable<T>): StrippedIterable<T> {
  * @internal
  */
 export function curryIterFunction<T, U, Args extends unknown[]>(
-  f: IterFunction<T, U, Args>
+  f: IterFunction<T, U, Args>,
 ): CurriedIterFunction<T, U, Args> {
-  return (...args) =>
-    (it) =>
-      f(it, ...args);
+  return (...args) => (it) => f(it, ...args);
 }
 
 /**
