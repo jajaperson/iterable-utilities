@@ -23,6 +23,7 @@ export const norm = reducers.norm;
 
 // Transformers
 export const map = curryIterFunction(transformers.map);
+export const flatMap = curryIterFunction(transformers.flatMap);
 export const take = curryIterFunction(transformers.take);
 export const until = curryIterFunction(transformers.until);
 export const filter = curryIterFunction(transformers.filter);
