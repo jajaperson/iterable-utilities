@@ -4,10 +4,13 @@ import { LICENSE as license, VERSION as version } from "../version.ts";
 await emptyDir("./npm");
 
 await build({
-  entryPoints: ["./mod.ts", {
-    name: "./fp",
-    path: "./fp.ts",
-  }],
+  entryPoints: [
+    "./mod.ts",
+    {
+      name: "./fp",
+      path: "./fp.ts",
+    },
+  ],
   outDir: "./npm",
   shims: {
     deno: "dev",
@@ -32,7 +35,13 @@ await build({
       url: "https://github.com/jajaperson/iterable-utilities/issues",
     },
     devDependecies: {
-      "copb": "^1.0.1",
+      copb: "^1.0.1",
+    },
+    typesVersions: {
+      "<4.7": {
+        "index.d.ts": ["types/mod.d.ts"],
+        fp: ["types/fp.d.ts"],
+      },
     },
   },
 });
