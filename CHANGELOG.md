@@ -12,7 +12,7 @@ and this project adheres to
 - Chunkify actually works as intended
 - Added `flatMap` :tada:
 
-## [3.0.0] - 2020-08-28
+## [3.0.0] - 2022-08-28
 
 ### Added
 
@@ -29,7 +29,7 @@ and this project adheres to
 - Point docs to [deno.land](deno.land/x/iter/mod.ts) rather than
   [doc.deno.land](https://doc.deno.land/https://deno.land/x/iter/mod.ts)
 
-## [2.6.0] - 2020-08-24
+## [2.6.0] - 2022-08-24
 
 ### Added
 
@@ -40,27 +40,27 @@ and this project adheres to
 
 - (docs) Added special note on the inclusivity of `create.range()`.
 
-## [2.5.0] - 2020-08-12
+## [2.5.0] - 2022-08-12
 
 ### Added
 
 - `iter.create.fromChars()` and `iter.create.fromCharCodes()` for iterating over
   UTF-16 character units and codes respectively.
 
-## [2.4.2] - 2020-07-30
+## [2.4.2] - 2022-07-30
 
 ### Changed
 
 - Another attempt to fix the NPM release (debugging actions can be awful
   sometimes).
 
-## [2.4.1] - 2020-07-30
+## [2.4.1] - 2022-07-30
 
 ### Changed
 
 - Fixed NPM release action.
 
-## [2.4.0] - 2020-07-30
+## [2.4.0] - 2022-07-30
 
 ### Added
 
