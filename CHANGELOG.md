@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+- Flattened `deno.json`
+- Chunkify actually works as intended
+- Added `flatMap` :tada:
+
 ## [3.0.0] - 2020-08-28
 
 ### Added
