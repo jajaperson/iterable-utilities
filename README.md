@@ -1,4 +1,4 @@
-# Iter [![Version](https://img.shields.io/github/v/tag/jajaperson/iterable-utilities?label=version)](https://github.com/jajaperson/iterable-utilities/releases) [![Build Status](https://img.shields.io/github/workflow/status/jajaperson/iterable-utilities/Test%20Deno%20Module)](https://github.com/jajaperson/iterable-utilities/actions?query=workflow%3A%22Test+Deno+Module%22)
+# Iter [![Version](https://img.shields.io/github/v/tag/jajaperson/iterable-utilities?label=version)](https://github.com/jajaperson/iterable-utilities/releases) [![Build Status](https://img.shields.io/github/actions/workflow/status/jajaperson/iterable-utilities/deno.yaml?branch=main)](https://github.com/jajaperson/iterable-utilities/actions/workflows/deno.yaml)
 
 A bunch of utilities for working with iterables, many inspired by the native
 array methods.
@@ -113,14 +113,12 @@ import * as iter from "https://deno.land/x/iter/fp.ts";
 import { c, p } from "https://deno.land/x/copb/mod.ts";
 
 const pipeline = c(
-  p (iter.map<number>(x => x * 100)) // Only needed type annotation, the rest is inferred.
-    (iter.map(Math.floor))
-    (iter.filter(x => x % 3 === 0))
-    (iter.take(30))
-    (iter.reduce(
-      (str, x) => str + x, ""
-    ))
-    (console.log)
+  p(iter.map<number>((x) => x * 100))(
+    // Only needed type annotation, the rest is inferred.
+    iter.map(Math.floor)
+  )(iter.filter((x) => x % 3 === 0))(iter.take(30))(
+    iter.reduce((str, x) => str + x, "")
+  )(console.log)
 );
 
 pipeline(iter.create.randomNumbers());
