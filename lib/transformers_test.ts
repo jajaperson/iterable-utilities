@@ -23,6 +23,45 @@ Deno.test("map", () => {
   assertEquals([...testIter], [...testIterClone]);
 });
 
+Deno.test("flatMap", async (t) => {
+  type F<T, U> = transformers.FlatMapCallback<T, U>;
+  /**
+   * tests that flatMap behavior is identical to:
+   *
+   * - flatMap (supposed to be identical to map followed by flat)
+   * - map followed by flat
+   * - library map followed by library flat
+   */
+  const check = <T, U>(f: F<T, U>) => (it: T[]) => () => {
+    const testIterClone = transformers.flatMap(it, f);
+    const testSpreadClone = [...testIterClone];
+
+    // @ts-expect-error: iterable != readonlyArray
+    assertEquals(it.flatMap(f), testSpreadClone);
+    assertEquals(it.map(f).flat(), testSpreadClone);
+    assertEquals(
+      [...transformers.flat(transformers.map(it, f))],
+      testSpreadClone,
+    );
+  };
+
+  const id: <T>(x: T) => T = (x) => x;
+  const idx = <T>(x: T, i: number, it: T[] | Iterable<T>) => [x, i, it];
+
+  for (const [name, fn] of Object.entries({ id, idx })) {
+    const checker = check(fn);
+    await t.step(`empty + ${name}`, checker([]));
+    await t.step(
+      `homogeneous + ${name}`,
+      checker([[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]]),
+    );
+    await t.step(
+      `heterogeneous + ${name}`,
+      checker(["a", ["b", "c"], 3, false, { d: 1 }]),
+    );
+  }
+});
+
 Deno.test("filter", () => {
   const even = (x: number) => x % 2 === 0;
 

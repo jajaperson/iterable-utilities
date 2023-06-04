@@ -153,7 +153,7 @@ Full API documentation can be found [here](https://deno.land/x/iter/mod.ts)
 - [x] `some`
 - [x] `forEach`
 - [x] `flat`
-- [ ] `flatMap`
+- [x] `flatMap`
 
 ### Currently not being considered
 

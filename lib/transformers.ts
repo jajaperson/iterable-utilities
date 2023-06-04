@@ -23,6 +23,23 @@ export interface MapCallback<T, U> {
 }
 
 /**
+ * @link flatMap | `flatMap`} callback.
+ * @typeParam T - See {@link flatMap}
+ * @typeParam U - See {@link flatMap}
+ */
+export interface FlatMapCallback<T, U> {
+  /**
+   * {@link flatMap | `flatMap`} callback.
+   * @callback FlatMapCallback
+   * @param item - The current item to be mapped.
+   * @param index - The index of the item.
+   * @param it - The iterable.
+   * @returns The mapped value
+   */
+  (item: T, index: number, it: Iterable<T>): U | Iterable<U>;
+}
+
+/**
  * Lazily calls a defined callback function for each element of an iterable, and
  * returns a new iterable of the results.
  * @param it - The iterable being mapped.
@@ -54,6 +71,52 @@ export function map<T, U = T>(
     *[Symbol.iterator]() {
       let index = 0;
       for (const item of it) yield f(item, index++, it);
+    },
+  };
+}
+
+/**
+ * Lazily calls a defined callback function for each element of an iterable, and
+ * returns a new flattened iterable of the results by one level.
+ * @param it - The iterable being mapped.
+ * @param {FlatMapCallback} f - A function that accepts up to three arguments. The
+ * flatMap function calls `f` function one time for each item in the iterable.
+ * @typeParam T - Type of items in `it`.
+ * @typeParam U - Return type of `f`.
+ * @returns An iterable of `f` applied to items of `it`.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const numbers = iter.create.increments(1);
+ * const squares = iter.flatMap(numbers, n => [n, n*n]);
+ * const iterator = squares[Symbol.iterator]();
+ *
+ * console.log(iterator.next().value); // -> 1
+ * console.log(iterator.next().value); // -> 1
+ * console.log(iterator.next().value); // -> 2
+ * console.log(iterator.next().value); // -> 4
+ * console.log(iterator.next().value); // -> 3
+ * console.log(iterator.next().value); // -> 9
+ * ```
+ */
+export function flatMap<T, U = T>(
+  it: Iterable<T>,
+  f: FlatMapCallback<T, U>,
+): Iterable<U> {
+  return {
+    *[Symbol.iterator]() {
+      let index = 0;
+      for (const item of it) {
+        const mapped = f(item, index, it);
+        // uses simplified flat as at most one level is flattened
+        if (isIterable(mapped)) {
+          yield* mapped;
+        } else {
+          yield mapped;
+        }
+        index++;
+      }
     },
   };
 }
