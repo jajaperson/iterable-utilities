@@ -8,6 +8,13 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- Simplified `deno.json` again using the new [global-exclude][global-exclude]
+  feature in `v1.34`.
+
+[global-exclude]: https://deno.com/blog/v1.34#configuration-file-improvements
+
 ## [3.1.0] - 2023-06-04
 
 ### Added

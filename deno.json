@@ -1,5 +1,3 @@
 {
-  "lint": { "exclude": ["npm/"] },
-  "fmt": { "exclude": ["npm/"] },
-  "test": { "exclude": ["npm/"] }
+  "exclude": ["npm/"]
 }
