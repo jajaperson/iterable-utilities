@@ -94,6 +94,30 @@ Deno.test("cut", () => {
   assertEquals(cutNumbersExclusive[cutNumbersExclusive.length - 1], 4);
 });
 
+Deno.test("dropUntil", () => {
+  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  const cutNumbers = [...transformers.dropUntil(numbers, (n) => n === 5)];
+  const cutNumbersExclusive = [
+    ...transformers.dropUntil(numbers, (n) => n === 5, false),
+  ];
+
+  assertEquals(cutNumbers, [5, 6, 7, 8, 9]);
+  assertEquals(cutNumbersExclusive, [6, 7, 8, 9]);
+
+  {
+    const numbers = create.range(1, 10);
+    const dropped = transformers.dropUntil(numbers, (n) => n >= 5);
+    const droppedExclusive = transformers.dropUntil(
+      numbers,
+      (n) => n >= 5,
+      false,
+    );
+    assertEquals([...dropped], [5, 6, 7, 8, 9, 10]);
+    assertEquals([...droppedExclusive], [6, 7, 8, 9, 10]);
+  }
+});
+
 Deno.test("indexedPairs", () => {
   const numbers = [9, 8, 7, 6, 5, 4, 3, 2, 1];
   [...transformers.indexedPairs(numbers)].forEach(([i, v]) => {

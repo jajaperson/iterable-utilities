@@ -242,6 +242,56 @@ export function until<T>(
 }
 
 /**
+ * Returns a new iterable which skips items from `it` until `f` returns true.
+ * true.
+ * @param it - The iterable being skipped.
+ * @param {IterablePredicateCallback} f - A function that accepts up to three
+ * arguments. The `dropUntil` function calls `f` one time for each item
+ * in the iterable until `f` returns true.
+ * @param includeFirst - Whether the item for which `f` returns true should be
+ * included.
+ * @typeParam T - The type of items in both `it` and the returned iterable.
+ * @returns A new iterable of `it` which begins at the first element where `f` returns true
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const numbers = iter.create.range(1, 10);
+ * const dropped = iter.dropUntil(numbers, (n) => n >= 5);
+ *
+ * for (const num of dropped) {
+ *   console.log(num);
+ * }
+ *
+ * // -> 5
+ * // -> 6
+ * // -> 7
+ * // -> 8
+ * // -> 9
+ * // -> 10
+ * ```
+ */
+export function dropUntil<T>(
+  it: Iterable<T>,
+  f: IterablePredicateCallback<T>,
+  includeFirst = true,
+): IterableCircular<T> {
+  return {
+    *[Symbol.iterator]() {
+      let index = 0;
+      let dropping = true;
+      for (const item of it) {
+        if (dropping) {
+          dropping = !f(item, index++, it);
+          if (dropping || !includeFirst) continue;
+        }
+        yield item;
+      }
+    },
+  };
+}
+
+/**
  * Returns the items of an iterable that meet the condition specified in a
  * callback function.
  * @param it - The iterable being filtered
