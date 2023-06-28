@@ -156,6 +156,39 @@ export function take<T>(it: Iterable<T>, n: number): IterableCircular<T> {
 }
 
 /**
+ * Returns a new iterable containing the items of `it` except the first `n` items.
+ * @param it - The iterable being taken from.
+ * @param n - The number of items to drop.
+ * @typeParam T - The type of items in both `it` and the returned iterable.
+ * @returns A new iterable of `it` which skips the first `n` items.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const numbers = iter.create.range(1, 10);
+ * const from7 = iter.drop(numbers, 6);
+ *
+ * for (const num of from7) {
+ *   console.log(num);
+ * }
+ *
+ * // -> 7
+ * // -> 8
+ * // -> 9
+ * // -> 10
+ * ```
+ */
+export function drop<T>(it: Iterable<T>, n: number): IterableCircular<T> {
+  return {
+    *[Symbol.iterator]() {
+      const iterator = it[Symbol.iterator]();
+      for (let i = 0; i < n; i++) iterator.next();
+      yield* { [Symbol.iterator]: () => iterator };
+    },
+  };
+}
+
+/**
  * Returns a new iterable which yields until `f` returns true.
  * true.
  * @param it - The iterable being cut.

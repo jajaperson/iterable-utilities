@@ -14,6 +14,17 @@ Deno.test("take", () => {
   assertEquals(testArray.slice(0, 5), [...transformers.take(testIter, 5)]);
 });
 
+Deno.test("drop", () => {
+  const testArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const testIter = testArray[Symbol.iterator]();
+
+  assertEquals(testArray.slice(5), [...transformers.drop(testIter, 5)]);
+
+  const numbers = create.range(1, 10);
+
+  assertEquals([...numbers].slice(6), [...transformers.drop(numbers, 6)]);
+});
+
 Deno.test("map", () => {
   const id: (x: number) => number = (x) => x;
 
