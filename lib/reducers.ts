@@ -302,6 +302,30 @@ export function sum(it: Iterable<number>): number {
 }
 
 /**
+ * Finds the average of all items in `it`.
+ *
+ * :warning: When ran on an endless iterable, this never returns.
+ * @param it - The iterable to calculate the average of.
+ * @returns The average of all items in `it`.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter";
+ *
+ * const myRange = iter.create.range(1, 100);
+ * console.log(iter.average(myRange)); // -> 50.5
+ */
+export function average(it: Iterable<number>): number {
+  let count = 0;
+  let accumulator = 0;
+  for (const item of it) {
+    accumulator += item;
+    if (isNaN(accumulator)) break;
+    count++;
+  }
+  return accumulator / count;
+}
+
+/**
  * Finds the product of all items in `it`.
  *
  * :warning: When ran on an endless iterable without any zeros, this never

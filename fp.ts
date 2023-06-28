@@ -18,6 +18,7 @@ export const includes = curryIterFunction(reducers.includes);
 export const find = curryIterFunction(reducers.find);
 export const findIndex = curryIterFunction(reducers.findIndex);
 export const sum = reducers.sum;
+export const average = reducers.average;
 export const product = reducers.product;
 export const norm = reducers.norm;
 

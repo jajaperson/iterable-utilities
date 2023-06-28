@@ -110,6 +110,11 @@ Deno.test("sum", () => {
   assertEquals(reducers.sum([0, 3, 2, 4, -2, 5, 1, -3]), 10);
 });
 
+Deno.test("avergage", () => {
+  assertEquals(reducers.average([0, 3, 2, 4, -2, 5, 1, -3]), 1.25);
+  assertEquals(reducers.average(range(1, 100)), 50.5);
+});
+
 Deno.test("product", () => {
   assertEquals(reducers.product(range(1, 9)), 362880);
 
