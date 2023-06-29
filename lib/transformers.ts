@@ -291,6 +291,41 @@ export function dropUntil<T>(
   };
 }
 
+
+/**
+ * Returns a new iterable which yields while `f` returns true.
+ *
+ * @param it - The iterable being cut.
+ * @param {IterablePredicateCallback} f - A function that accepts up to three
+ * arguments. The `takeWhile` function calls `f` one time for each item in the iterable.
+ * included.
+ * @typeParam T - The type of items in both `it` and the returned iterable.
+ * @returns A new iterables of `it` which terminates
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const naturals = iter.create.increments(1);
+ * const numbers = iter.takeWhile(naturals, (n) => n <= 5);
+ *
+ * for (const num of numbers) {
+ *   console.log(num);
+ * }
+ *
+ * // -> 1
+ * // -> 2
+ * // -> 3
+ * // -> 4
+ * // -> 5
+ * ```
+ */
+export function takeWhile<T>(
+  it: Iterable<T>,
+  f: IterablePredicateCallback<T>,
+): IterableCircular<T> {
+  return until(it, (...args) => !f(...args), false);
+}
+
 /**
  * Returns the items of an iterable that meet the condition specified in a
  * callback function.

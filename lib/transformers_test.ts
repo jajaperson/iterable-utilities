@@ -118,6 +118,13 @@ Deno.test("dropUntil", () => {
   }
 });
 
+Deno.test("takeWhile", () => {
+  const numbers = create.range(1, 10);
+
+  const taken = transformers.takeWhile(numbers, (n) => n <= 5);
+  assertEquals([...taken], [1, 2, 3, 4, 5]);
+});
+
 Deno.test("indexedPairs", () => {
   const numbers = [9, 8, 7, 6, 5, 4, 3, 2, 1];
   [...transformers.indexedPairs(numbers)].forEach(([i, v]) => {
