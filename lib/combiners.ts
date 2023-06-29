@@ -45,7 +45,7 @@ export function pair<T, U>(
 // TODO: Map function
 
 /**
- * Combines two or more iterab;es.
+ * Combines two or more iterables.
  * @param head - The first iterable.
  * @param tails - (blob) Additional iterables to add to the end of head. If
  * there are more than one, they must be of the same type.

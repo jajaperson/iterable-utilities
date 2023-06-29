@@ -157,10 +157,10 @@ export function take<T>(it: Iterable<T>, n: number): IterableCircular<T> {
 
 /**
  * Returns a new iterable which yields until `f` returns true.
- * true.
+ *
  * @param it - The iterable being cut.
  * @param {IterablePredicateCallback} f - A function that accepts up to three
- * arguments. The cut function calls `f` one time for each item in the iterable.
+ * arguments. The `until` function calls `f` one time for each item in the iterable.
  * @param includeLast - Whether the item for which `f` returns true should be
  * included.
  * @typeParam T - The type of items in both `it` and the returned iterable.
