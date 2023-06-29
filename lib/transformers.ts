@@ -291,7 +291,6 @@ export function dropUntil<T>(
   };
 }
 
-
 /**
  * Returns a new iterable which yields while `f` returns true.
  *
@@ -324,6 +323,42 @@ export function takeWhile<T>(
   f: IterablePredicateCallback<T>,
 ): IterableCircular<T> {
   return until(it, (...args) => !f(...args), false);
+}
+
+/**
+ * Returns a new iterable which skips items from `it` while `f` returns true.
+ * true.
+ * @param it - The iterable being skipped.
+ * @param {IterablePredicateCallback} f - A function that accepts up to three
+ * arguments. The `dropWhile` function calls `f` one time for each item
+ * in the iterable.
+ *
+ * @typeParam T - The type of items in both `it` and the returned iterable.
+ * @returns A new iterable of `it` which begins at the first element where `f` returns false
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const numbers = iter.create.range(1, 10);
+ * const dropped = iter.dropWhile(numbers, (n) => n < 5);
+ *
+ * for (const num of dropped) {
+ *   console.log(num);
+ * }
+ *
+ * // -> 5
+ * // -> 6
+ * // -> 7
+ * // -> 8
+ * // -> 9
+ * // -> 10
+ * ```
+ */
+export function dropWhile<T>(
+  it: Iterable<T>,
+  f: IterablePredicateCallback<T>,
+): IterableCircular<T> {
+  return dropUntil(it, (...args) => !f(...args));
 }
 
 /**

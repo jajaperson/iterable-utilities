@@ -29,6 +29,7 @@ export const take = curryIterFunction(transformers.take);
 export const takeWhile = curryIterFunction(transformers.takeWhile);
 export const drop = curryIterFunction(transformers.drop);
 export const dropUntil = curryIterFunction(transformers.dropUntil);
+export const dropWhile = curryIterFunction(transformers.dropWhile);
 export const until = curryIterFunction(transformers.until);
 export const filter = curryIterFunction(transformers.filter);
 export const indexedPairs = transformers.indexedPairs;
