@@ -113,12 +113,12 @@ import * as iter from "https://deno.land/x/iter/fp.ts";
 import { c, p } from "https://deno.land/x/copb/mod.ts";
 
 const pipeline = c(
-  p(iter.map<number>((x) => x * 100))(
-    // Only needed type annotation, the rest is inferred.
-    iter.map(Math.floor)
-  )(iter.filter((x) => x % 3 === 0))(iter.take(30))(
-    iter.reduce((str, x) => str + x, "")
-  )(console.log)
+  p (iter.map<number>(x => x * 100)) // Only needed type annotation, the rest is inferred.
+    (iter.map(Math.floor))
+    (iter.filter(x => x % 3 === 0))
+    (iter.take(30))
+    (iter.reduce((str, x) => str + x, ""))
+    (console.log)
 );
 
 pipeline(iter.create.randomNumbers());
