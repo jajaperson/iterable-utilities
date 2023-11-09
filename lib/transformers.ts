@@ -156,6 +156,39 @@ export function take<T>(it: Iterable<T>, n: number): IterableCircular<T> {
 }
 
 /**
+ * Returns a new iterable containing the items of `it` except the first `n` items.
+ * @param it - The iterable being taken from.
+ * @param n - The number of items to drop.
+ * @typeParam T - The type of items in both `it` and the returned iterable.
+ * @returns A new iterable of `it` which skips the first `n` items.
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const numbers = iter.create.range(1, 10);
+ * const from7 = iter.drop(numbers, 6);
+ *
+ * for (const num of from7) {
+ *   console.log(num);
+ * }
+ *
+ * // -> 7
+ * // -> 8
+ * // -> 9
+ * // -> 10
+ * ```
+ */
+export function drop<T>(it: Iterable<T>, n: number): IterableCircular<T> {
+  return {
+    *[Symbol.iterator]() {
+      const iterator = it[Symbol.iterator]();
+      for (let i = 0; i < n; i++) iterator.next();
+      yield* { [Symbol.iterator]: () => iterator };
+    },
+  };
+}
+
+/**
  * Returns a new iterable which yields until `f` returns true.
  *
  * @param it - The iterable being cut.
@@ -206,6 +239,126 @@ export function until<T>(
       }
     },
   };
+}
+
+/**
+ * Returns a new iterable which skips items from `it` until `f` returns true.
+ * true.
+ * @param it - The iterable being skipped.
+ * @param {IterablePredicateCallback} f - A function that accepts up to three
+ * arguments. The `dropUntil` function calls `f` one time for each item
+ * in the iterable until `f` returns true.
+ * @param includeFirst - Whether the item for which `f` returns true should be
+ * included.
+ * @typeParam T - The type of items in both `it` and the returned iterable.
+ * @returns A new iterable of `it` which begins at the first element where `f` returns true
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const numbers = iter.create.range(1, 10);
+ * const dropped = iter.dropUntil(numbers, (n) => n >= 5);
+ *
+ * for (const num of dropped) {
+ *   console.log(num);
+ * }
+ *
+ * // -> 5
+ * // -> 6
+ * // -> 7
+ * // -> 8
+ * // -> 9
+ * // -> 10
+ * ```
+ */
+export function dropUntil<T>(
+  it: Iterable<T>,
+  f: IterablePredicateCallback<T>,
+  includeFirst = true,
+): IterableCircular<T> {
+  return {
+    *[Symbol.iterator]() {
+      let index = 0;
+      let dropping = true;
+      for (const item of it) {
+        if (dropping) {
+          dropping = !f(item, index++, it);
+          if (dropping || !includeFirst) continue;
+        }
+        yield item;
+      }
+    },
+  };
+}
+
+/**
+ * Returns a new iterable which yields while `f` returns true.
+ *
+ * @param it - The iterable being cut.
+ * @param {IterablePredicateCallback} f - A function that accepts up to three
+ * arguments. The `takeWhile` function calls `f` one time for each item in the iterable.
+ * included.
+ * @typeParam T - The type of items in both `it` and the returned iterable.
+ * @returns A new iterables of `it` which terminates
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const naturals = iter.create.increments(1);
+ * const numbers = iter.takeWhile(naturals, (n) => n <= 5);
+ *
+ * for (const num of numbers) {
+ *   console.log(num);
+ * }
+ *
+ * // -> 1
+ * // -> 2
+ * // -> 3
+ * // -> 4
+ * // -> 5
+ * ```
+ */
+export function takeWhile<T>(
+  it: Iterable<T>,
+  f: IterablePredicateCallback<T>,
+): IterableCircular<T> {
+  return until(it, (...args) => !f(...args), false);
+}
+
+/**
+ * Returns a new iterable which skips items from `it` while `f` returns true.
+ * true.
+ * @param it - The iterable being skipped.
+ * @param {IterablePredicateCallback} f - A function that accepts up to three
+ * arguments. The `dropWhile` function calls `f` one time for each item
+ * in the iterable.
+ *
+ * @typeParam T - The type of items in both `it` and the returned iterable.
+ * @returns A new iterable of `it` which begins at the first element where `f` returns false
+ * @example
+ * ```ts
+ * import * as iter from "https://deno.land/x/iter/mod.ts";
+ *
+ * const numbers = iter.create.range(1, 10);
+ * const dropped = iter.dropWhile(numbers, (n) => n < 5);
+ *
+ * for (const num of dropped) {
+ *   console.log(num);
+ * }
+ *
+ * // -> 5
+ * // -> 6
+ * // -> 7
+ * // -> 8
+ * // -> 9
+ * // -> 10
+ * ```
+ */
+export function dropWhile<T>(
+  it: Iterable<T>,
+  f: IterablePredicateCallback<T>,
+): IterableCircular<T> {
+  return dropUntil(it, (...args) => !f(...args));
 }
 
 /**

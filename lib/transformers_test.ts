@@ -14,6 +14,17 @@ Deno.test("take", () => {
   assertEquals(testArray.slice(0, 5), [...transformers.take(testIter, 5)]);
 });
 
+Deno.test("drop", () => {
+  const testArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const testIter = testArray[Symbol.iterator]();
+
+  assertEquals(testArray.slice(5), [...transformers.drop(testIter, 5)]);
+
+  const numbers = create.range(1, 10);
+
+  assertEquals([...numbers].slice(6), [...transformers.drop(numbers, 6)]);
+});
+
 Deno.test("map", () => {
   const id: (x: number) => number = (x) => x;
 
@@ -81,6 +92,44 @@ Deno.test("until", () => {
 
   assertEquals(cutNumbers[cutNumbers.length - 1], 5);
   assertEquals(cutNumbersExclusive[cutNumbersExclusive.length - 1], 4);
+});
+
+Deno.test("dropUntil", () => {
+  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  const cutNumbers = [...transformers.dropUntil(numbers, (n) => n === 5)];
+  const cutNumbersExclusive = [
+    ...transformers.dropUntil(numbers, (n) => n === 5, false),
+  ];
+
+  assertEquals(cutNumbers, [5, 6, 7, 8, 9]);
+  assertEquals(cutNumbersExclusive, [6, 7, 8, 9]);
+
+  {
+    const numbers = create.range(1, 10);
+    const dropped = transformers.dropUntil(numbers, (n) => n >= 5);
+    const droppedExclusive = transformers.dropUntil(
+      numbers,
+      (n) => n >= 5,
+      false,
+    );
+    assertEquals([...dropped], [5, 6, 7, 8, 9, 10]);
+    assertEquals([...droppedExclusive], [6, 7, 8, 9, 10]);
+  }
+});
+
+Deno.test("takeWhile", () => {
+  const numbers = create.range(1, 10);
+
+  const taken = transformers.takeWhile(numbers, (n) => n <= 5);
+  assertEquals([...taken], [1, 2, 3, 4, 5]);
+});
+
+Deno.test("dropWhile", () => {
+  const numbers = create.range(1, 10);
+
+  const dropped = transformers.dropWhile(numbers, (n) => n <= 5);
+  assertEquals([...dropped], [6, 7, 8, 9, 10]);
 });
 
 Deno.test("indexedPairs", () => {

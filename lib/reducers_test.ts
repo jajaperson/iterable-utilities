@@ -108,6 +108,17 @@ Deno.test("includes", () => {
 
 Deno.test("sum", () => {
   assertEquals(reducers.sum([0, 3, 2, 4, -2, 5, 1, -3]), 10);
+
+  const withNaN = concat(range(10), [NaN], increments());
+  assertEquals(reducers.sum(withNaN), NaN);
+});
+
+Deno.test("avergage", () => {
+  assertEquals(reducers.average([0, 3, 2, 4, -2, 5, 1, -3]), 1.25);
+  assertEquals(reducers.average(range(1, 100)), 50.5);
+
+  const withNaN = concat(range(10), [NaN], increments());
+  assertEquals(reducers.average(withNaN), NaN);
 });
 
 Deno.test("product", () => {
@@ -115,6 +126,9 @@ Deno.test("product", () => {
 
   const determinableEndless = concat(range(100), [0], increments());
   assertEquals(reducers.product(determinableEndless), 0);
+
+  const withNaN = concat(range(1, 9), [NaN], increments());
+  assertEquals(reducers.product(withNaN), NaN);
 });
 
 Deno.test("norm", () => {
