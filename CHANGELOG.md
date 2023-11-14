@@ -8,8 +8,29 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [3.2.1] - 2023-11-14
+
 ### Changed
 
+- bumped version to fix NPM release
+
+## [3.2.0] - 2023-11-14
+
+## Added
+
+Many equivalents to Kotlin standard library were added 🎉
+
+- Reducers
+	- `iter.average()` (inspired by Kotlin's [`sequences.average`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/average.html))
+- Transformers
+	- `iter.takeWhile()` (inspired by Kotlin's [`sequences.takeWhile`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/take-while.html))
+	- `iter.drop()` (inspired by Kotlin's [`sequences.drop`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/drop.html))
+	- `iter.dropUntil()` (like `iter.until()` but drops til given predicate is true)
+	- `iter.dropWhile()` (inspired by Kotlin's [`sequences.takeWhile`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/drop-while.html))
+
+### Changed
+
+- added tests for NaN checks in `iter.sum()` and `iter.product()`.
 - Simplified `deno.json` again using the new [global-exclude][global-exclude]
   feature.
 
@@ -40,7 +61,7 @@ and this project adheres to
 
 - (:warning: breaking) Fixed typo in `iter.remember()` (originally
   `iter.rememeber()`)
-- Point docs to [deno.land](deno.land/x/iter/mod.ts) rather than
+- Point docs to [deno.land](https://deno.land/x/iter/mod.ts) rather than
   [doc.deno.land](https://doc.deno.land/https://deno.land/x/iter/mod.ts)
 
 ## [2.6.0] - 2022-08-24
@@ -214,7 +235,9 @@ and this project adheres to
   - `iter.pair()` for zipping two iterables.
   - `iter.concat` (like `Array.prototype.concat`)
 
-[unreleased]: https://github.com/jajaperson/iterable-utilities/compare/v3.1.0...HEAD
+[unreleased]: https://github.com/jajaperson/iterable-utilities/compare/v3.2.1...HEAD
+[3.2.1]: https://github.com/jajaperson/iterable-utilities/releases/tag/v3.2.1
+[3.2.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v3.2.0
 [3.1.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v3.1.0
 [3.0.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v3.0.0
 [2.6.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v2.6.0
