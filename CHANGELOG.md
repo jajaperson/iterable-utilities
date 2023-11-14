@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [3.2.2] - 2023-11-14
+
+### Changed
+
+- lint and format CHANGELOG.md
+
 ## [3.2.1] - 2023-11-14
 
 ### Changed
@@ -21,12 +27,17 @@ and this project adheres to
 Many equivalents to Kotlin standard library were added 🎉
 
 - Reducers
-	- `iter.average()` (inspired by Kotlin's [`sequences.average`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/average.html))
+  - `iter.average()` (inspired by Kotlin's
+    [`sequences.average`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/average.html))
 - Transformers
-	- `iter.takeWhile()` (inspired by Kotlin's [`sequences.takeWhile`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/take-while.html))
-	- `iter.drop()` (inspired by Kotlin's [`sequences.drop`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/drop.html))
-	- `iter.dropUntil()` (like `iter.until()` but drops til given predicate is true)
-	- `iter.dropWhile()` (inspired by Kotlin's [`sequences.takeWhile`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/drop-while.html))
+  - `iter.takeWhile()` (inspired by Kotlin's
+    [`sequences.takeWhile`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/take-while.html))
+  - `iter.drop()` (inspired by Kotlin's
+    [`sequences.drop`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/drop.html))
+  - `iter.dropUntil()` (like `iter.until()` but drops til given predicate is
+    true)
+  - `iter.dropWhile()` (inspired by Kotlin's
+    [`sequences.takeWhile`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/drop-while.html))
 
 ### Changed
 
@@ -235,7 +246,8 @@ Many equivalents to Kotlin standard library were added 🎉
   - `iter.pair()` for zipping two iterables.
   - `iter.concat` (like `Array.prototype.concat`)
 
-[unreleased]: https://github.com/jajaperson/iterable-utilities/compare/v3.2.1...HEAD
+[unreleased]: https://github.com/jajaperson/iterable-utilities/compare/v3.2.2...HEAD
+[3.2.2]: https://github.com/jajaperson/iterable-utilities/releases/tag/v3.2.2
 [3.2.1]: https://github.com/jajaperson/iterable-utilities/releases/tag/v3.2.1
 [3.2.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v3.2.0
 [3.1.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v3.1.0
