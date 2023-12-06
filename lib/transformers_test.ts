@@ -1,8 +1,4 @@
-import {
-  assert,
-  assertEquals,
-  assertThrows,
-} from "https://deno.land/std@0.84.0/testing/asserts.ts";
+import { assert, assertEquals, assertThrows } from "../test_deps.ts";
 import * as transformers from "./transformers.ts";
 import * as create from "./generators.ts";
 import { stripIterable } from "./internal/util.ts";
@@ -49,6 +45,7 @@ Deno.test("flatMap", async (t) => {
 
     // @ts-expect-error: iterable != readonlyArray
     assertEquals(it.flatMap(f), testSpreadClone);
+    // @ts-expect-error: iterable != Array
     assertEquals(it.map(f).flat(), testSpreadClone);
     assertEquals(
       [...transformers.flat(transformers.map(it, f))],

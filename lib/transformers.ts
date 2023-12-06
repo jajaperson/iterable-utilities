@@ -641,7 +641,7 @@ export function fuse<T>(iter: Iterable<T>): IterableCircular<T> {
  * @example
  * ```ts
  * import * as iter from "https://deno.land/x/iter/mod.ts";
- * import { assert } from "https://deno.land/std@0.84.0/testing/asserts.ts";
+ * import { assert } from "../test_deps.ts";
  *
  * const peekable = iter.peekable(iter.create.range(5));
  *

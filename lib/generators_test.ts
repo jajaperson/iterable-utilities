@@ -1,7 +1,4 @@
-import {
-  assert,
-  assertEquals,
-} from "https://deno.land/std@0.84.0/testing/asserts.ts";
+import { assert, assertEquals } from "../test_deps.ts";
 import * as generators from "./generators.ts";
 import { sum } from "./reducers.ts";
 
