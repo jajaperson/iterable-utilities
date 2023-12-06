@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [3.2.3] - 2023-12-06
+
+### Changed
+
+- bumped testing dependency version
+
 ## [3.2.2] - 2023-11-14
 
 ### Changed
@@ -246,7 +252,8 @@ Many equivalents to Kotlin standard library were added 🎉
   - `iter.pair()` for zipping two iterables.
   - `iter.concat` (like `Array.prototype.concat`)
 
-[unreleased]: https://github.com/jajaperson/iterable-utilities/compare/v3.2.2...HEAD
+[unreleased]: https://github.com/jajaperson/iterable-utilities/compare/v3.2.3...HEAD
+[3.2.3]: https://github.com/jajaperson/iterable-utilities/releases/tag/v3.2.3
 [3.2.2]: https://github.com/jajaperson/iterable-utilities/releases/tag/v3.2.2
 [3.2.1]: https://github.com/jajaperson/iterable-utilities/releases/tag/v3.2.1
 [3.2.0]: https://github.com/jajaperson/iterable-utilities/releases/tag/v3.2.0

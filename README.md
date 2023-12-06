@@ -23,7 +23,7 @@ The module is currently hosted on <https://deno.land/x/iter>.
 ```ts
 import * as iter from "https://deno.land/x/iter/mod.ts";
 // or with a version
-import * as iter from "https://deno.land/x/iter@v3.2.1/mod.ts";
+import * as iter from "https://deno.land/x/iter@$MODULE_VERSION/mod.ts";
 
 const naturals = iter.create.increments(1);
 const odds = iter.filter(naturals, (n) => n % 2 === 1);
@@ -60,7 +60,7 @@ sensible level of currying. In Deno:
 ```ts
 import * as iter from "https://deno.land/x/iter/fp.ts";
 // or with a version
-import * as iter from "https://deno.land/x/iter@v3.2.1/fp.ts";
+import * as iter from "https://deno.land/x/iter@$MODULE_VERSION/fp.ts";
 
 const naturals = iter.create.increments(1);
 const filterOdds = iter.filter<number>((n) => n % 2 === 1);
