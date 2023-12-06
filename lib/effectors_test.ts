@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/std@0.84.0/testing/asserts.ts";
+import { assertEquals } from "../test_deps.ts";
 import * as effectors from "./effectors.ts";
 import { take } from "./transformers.ts";
 import { increments } from "./generators.ts";

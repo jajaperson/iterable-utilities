@@ -1,7 +1,4 @@
-import {
-  assertArrayIncludes,
-  assertEquals,
-} from "https://deno.land/std@0.84.0/testing/asserts.ts";
+import { assertArrayIncludes, assertEquals } from "./test_deps.ts";
 import { c, p } from "https://deno.land/x/copb@v1.0.1/mod.ts";
 import * as mod from "./mod.ts";
 import * as fp from "./fp.ts";

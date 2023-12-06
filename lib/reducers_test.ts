@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/std@0.84.0/testing/asserts.ts";
+import { assertEquals } from "../test_deps.ts";
 import * as reducers from "./reducers.ts";
 import { concat } from "./combiners.ts";
 import { increments, range } from "./generators.ts";
