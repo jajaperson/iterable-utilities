@@ -1,5 +1,8 @@
 import { kComb } from "./internal/util.ts";
-import { IterablePredicateCallback } from "./types.ts";
+import {
+  IterablePredicateCallback,
+  IterableTypePredicateCallback,
+} from "./types.ts";
 import { map } from "./transformers.ts";
 
 /**
@@ -160,6 +163,15 @@ export function some<T>(
  * // const allPositive = iter.every(naturals, (n) => n > 0);
  * ```
  */
+
+export function every<T>(
+  it: Iterable<T>,
+  predicate: IterablePredicateCallback<T>,
+): boolean;
+export function every<T, S extends T>(
+  it: Iterable<T>,
+  predicate: IterableTypePredicateCallback<T, S>,
+): it is Iterable<S>;
 export function every<T>(
   it: Iterable<T>,
   predicate: IterablePredicateCallback<T>,
