@@ -366,6 +366,14 @@ export function takeWhile<T>(
 export function dropWhile<T>(
   it: Iterable<T>,
   f: IterablePredicateCallback<T>,
+): IterableCircular<T>;
+export function dropWhile<T, S extends T>(
+  it: Iterable<T>,
+  f: IterableTypePredicateCallback<T, S>,
+): IterableCircular<T>;
+export function dropWhile<T>(
+  it: Iterable<T>,
+  f: IterablePredicateCallback<T>,
 ): IterableCircular<T> {
   return dropUntil(it, (...args) => !f(...args));
 }
