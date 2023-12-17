@@ -1,10 +1,24 @@
-import { assertArrayIncludes, assertEquals } from "./test_deps.ts";
+import {
+  assertArrayIncludes,
+  assertEquals,
+  assertType,
+  type IsExact,
+} from "./test_deps.ts";
+
 import { c, p } from "https://deno.land/x/copb@v1.0.1/mod.ts";
 import * as mod from "./mod.ts";
 import * as fp from "./fp.ts";
 
 Deno.test("All functions are available in functional programming version", () => {
   assertArrayIncludes(["curried", ...Object.keys(fp)], Object.keys(mod));
+});
+
+Deno.test("Curried functions with type predicates type checks", () => {
+  const xs = [1, "a", 2, "b"];
+  const result = fp.find((x): x is number => typeof x === "number")(xs);
+
+  assertType<IsExact<typeof result, number | undefined>>(true);
+  assertEquals(result, 1);
 });
 
 Deno.test("With copb", () => {
