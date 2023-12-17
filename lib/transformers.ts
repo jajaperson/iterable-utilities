@@ -2,6 +2,7 @@ import { isIterable } from "./internal/util.ts";
 import {
   IterableCircular,
   IterablePredicateCallback,
+  IterableTypePredicateCallback,
   Peekable,
 } from "./types.ts";
 
@@ -318,6 +319,14 @@ export function dropUntil<T>(
  * // -> 5
  * ```
  */
+export function takeWhile<T>(
+  it: Iterable<T>,
+  f: IterablePredicateCallback<T>,
+): IterableCircular<T>;
+export function takeWhile<T, S extends T>(
+  it: Iterable<T>,
+  f: IterableTypePredicateCallback<T, S>,
+): IterableCircular<S>;
 export function takeWhile<T>(
   it: Iterable<T>,
   f: IterablePredicateCallback<T>,
