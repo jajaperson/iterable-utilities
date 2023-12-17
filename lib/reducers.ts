@@ -242,6 +242,14 @@ export function includes<T>(it: Iterable<T>, value: T): boolean {
 export function find<T>(
   it: Iterable<T>,
   predicate: IterablePredicateCallback<T>,
+): T | undefined;
+export function find<T, S extends T>(
+  it: Iterable<T>,
+  predicate: IterableTypePredicateCallback<T, S>,
+): S | undefined;
+export function find<T>(
+  it: Iterable<T>,
+  predicate: IterablePredicateCallback<T>,
 ): T | undefined {
   let index = 0;
   for (const item of it) {
