@@ -29,6 +29,23 @@ export interface IterablePredicateCallback<T> {
 }
 
 /**
+ * Iterable type predicate callback.
+ * @typeParam T - Type of value to be predicated.
+ * @typeParam S - Type of value to be narrowed to.
+ */
+export interface IterableTypePredicateCallback<T, S extends T> {
+  /**
+   * Iterable type predicate callback.
+   * @callback IterableTypePredicateCallback
+   * @param value - The value of the item being predicated.
+   * @param index - The index of the item being predicated.
+   * @param it - The iterable.
+   * @returns The narrowed predicate result.
+   */
+  (value: T, index: number, it: Iterable<T>): value is S;
+}
+
+/**
  * The same as the `Iterable` type, but the iterator implementation is iterable.
  * @typeParam T - Type of items in the iterable.
  */

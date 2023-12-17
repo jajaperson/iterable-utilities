@@ -2,6 +2,7 @@ import { isIterable } from "./internal/util.ts";
 import {
   IterableCircular,
   IterablePredicateCallback,
+  IterableTypePredicateCallback,
   Peekable,
 } from "./types.ts";
 
@@ -321,6 +322,14 @@ export function dropUntil<T>(
 export function takeWhile<T>(
   it: Iterable<T>,
   f: IterablePredicateCallback<T>,
+): IterableCircular<T>;
+export function takeWhile<T, S extends T>(
+  it: Iterable<T>,
+  f: IterableTypePredicateCallback<T, S>,
+): IterableCircular<S>;
+export function takeWhile<T>(
+  it: Iterable<T>,
+  f: IterablePredicateCallback<T>,
 ): IterableCircular<T> {
   return until(it, (...args) => !f(...args), false);
 }
@@ -357,6 +366,14 @@ export function takeWhile<T>(
 export function dropWhile<T>(
   it: Iterable<T>,
   f: IterablePredicateCallback<T>,
+): IterableCircular<T>;
+export function dropWhile<T, S extends T>(
+  it: Iterable<T>,
+  f: IterableTypePredicateCallback<T, S>,
+): IterableCircular<T>;
+export function dropWhile<T>(
+  it: Iterable<T>,
+  f: IterablePredicateCallback<T>,
 ): IterableCircular<T> {
   return dropUntil(it, (...args) => !f(...args));
 }
@@ -386,6 +403,14 @@ export function dropWhile<T>(
  * console.log(iterator.next().value); // -> 11
  * ```
  */
+export function filter<T>(
+  it: Iterable<T>,
+  predicate: IterablePredicateCallback<T>,
+): IterableCircular<T>;
+export function filter<T, S extends T>(
+  it: Iterable<T>,
+  predicate: IterableTypePredicateCallback<T, S>,
+): IterableCircular<S>;
 export function filter<T>(
   it: Iterable<T>,
   predicate: IterablePredicateCallback<T>,
