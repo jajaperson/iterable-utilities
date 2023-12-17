@@ -398,6 +398,14 @@ export function dropWhile<T>(
 export function filter<T>(
   it: Iterable<T>,
   predicate: IterablePredicateCallback<T>,
+): IterableCircular<T>;
+export function filter<T, S extends T>(
+  it: Iterable<T>,
+  predicate: IterableTypePredicateCallback<T, S>,
+): IterableCircular<S>;
+export function filter<T>(
+  it: Iterable<T>,
+  predicate: IterablePredicateCallback<T>,
 ): IterableCircular<T> {
   return {
     *[Symbol.iterator](): IterableIterator<T> {
